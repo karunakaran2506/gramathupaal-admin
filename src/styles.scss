@@ -1,0 +1,161 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; overflow: hidden }
+
+/* You can add global styles to this file, and also import other style files */
+
+.pad-5{
+  padding: 5% 5%;
+}
+
+label{
+   margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.material-icons{
+   font-family: 'Material Icons'!important;
+}
+
+.ngx-pagination{
+   padding: 3% 0%!important;
+   // text-align: center!important;
+   
+   .current{
+       background: #39813e!important;
+   }
+ }
+
+ //#39813e
+// #50BD49
+
+ button:focus { outline: none !important; }
+
+ .form-control{
+   background-color: #fafafa;
+ }
+
+html, body { height: 100%; }
+
+body { margin: 0;}
+
+*{
+  font-family: "Montserrat", sans-serif!important;
+}
+
+.material-icons{
+  font-family: 'Material Icons' !important;
+}
+
+.btn1{
+   margin: 3% 3%;
+   width: 25%;
+}
+.btn2{
+   background: #f26522;
+   margin: 3% 3%;
+   width: 25%;
+   border-color: #f26522;
+}
+
+.heading{
+   padding-left: 2rem;
+   padding-top: 1rem;
+   margin: auto;
+   h2{
+       margin: 0px!important;
+   }
+ }
+
+ table {
+  // border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  margin-top: 20px;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  // background-color: #f8f8f8;
+  // border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  input{
+    width: 100%;
+  }
+}
+
+ @media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  .table-button1 ,.table-button2{
+    display: none;
+  }
+
+  #tablestatus{
+    display: contents;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    // border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    // border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+//  .card-text{
+//   font-size: 20px;
+//  }

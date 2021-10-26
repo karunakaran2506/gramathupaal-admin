@@ -1,2 +1,1 @@
-# gramathupaal-admin
-gramathupaal-admin-panel
+# hc-vendorweb

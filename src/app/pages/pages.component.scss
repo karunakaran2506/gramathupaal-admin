@@ -1,0 +1,100 @@
+mat-drawer-container{
+    height: 100%;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+// desktop view css condition
+@media screen and (min-width : 800px){
+    mat-drawer{
+        width: 20%;
+    }
+}
+
+@media screen and (min-width : 600px) and (max-width : 800px){
+    mat-drawer{
+        width: 40%;
+    }
+}
+
+::ng-deep .mat-badge-content{
+    background: #39813e;
+}
+
+.menu-button{
+    color: black;
+    background: inherit;
+    border: none;
+}
+
+// mobile view css condition
+@media screen and (max-width : 600px){
+    mat-drawer{
+        width: 55%;
+    }
+    .toolbar-btn{
+        display: none;
+    }
+}
+
+mat-toolbar{
+    background: white;
+    .menu-button{
+        background: inherit;
+        border: none;
+    }
+    .toolbar-btn{
+        margin: 0% 0.5%;
+    }
+    .button1{
+        background: #e9e9ef;
+    }
+    .button2{
+        background: #39813e;
+    }
+}
+
+.search{  
+    background-color: #f1f1f1;
+    padding: 0% 0.5%;
+    border-radius: 60px;
+    padding-left: 10px;
+    font-size: small;
+}
+                    
+.search .mat-icon { 
+    vertical-align: middle; 
+    color: #b7b7b7;
+}
+    
+.search input {
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    outline: none;
+}
+
+.spacer{
+    flex: 1 1 auto;
+}
+::ng-deep .mat-drawer-content { 
+    overflow-y:unset !important;
+}
+.mat-drawer {
+    border-right: none !important;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row { height:6rem; border-bottom: 1px solid #eeeeee; }
+
+.footer{
+    position: inherit;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+}

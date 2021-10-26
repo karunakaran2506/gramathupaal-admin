@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 heading">
+            <h2><b>Menuitems</b></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit(editCategoryForm.value)">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="product-name" class="form-label">
+                                    <h3><b>Name</b></h3>
+                                </label>
+                                <input formControlName="name" type="text" id="product-name" class="form-control"
+                                    placeholder="Enter Name">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="product-image" class="form-label">
+                                    <h3><b>Image</b></h3>
+                                </label>
+                                <input (change)="onFileChange($event)" formControlName="file" type="file" id="product-image" class="form-control">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="form-label">
+                                    <h3><b>Opening Hour</b></h3>
+                                </label>
+                                <select formControlName="openingtime1" class="form-control">
+                                    <option *ngFor="let data of hours" value="{{data.time}}">
+                                        {{data.displayname}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="form-label">
+                                    <h3><b>Opening Minutes</b></h3>
+                                </label>
+                                <select formControlName="openingtime2" class="form-control">
+                                    <option *ngFor="let data of minutes" value="{{data.time}}">
+                                        {{data.displayname}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <label class="form-label">
+                                    <h3><b>Closing Hour</b></h3>
+                                </label>
+                                <select formControlName="closingtime1" class="form-control">
+                                    <option *ngFor="let data of hours" value="{{data.time}}">
+                                        {{data.displayname}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <label class="form-label">
+                                    <h3><b>Closing Minutes</b></h3>
+                                </label>
+                                <select formControlName="closingtime2" class="form-control">
+                                    <option *ngFor="let data of minutes" value="{{data.time}}">
+                                        {{data.displayname}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6" style="text-align: left">
+                                <button type="submit" class="btn btn-primary btn2">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

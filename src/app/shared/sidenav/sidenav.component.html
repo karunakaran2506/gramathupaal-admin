@@ -1,0 +1,54 @@
+<mat-nav-list>
+    <div class="center">
+        <img style="height: 10rem;" src="assets/icon.png" />
+        <br>
+    </div>
+    <br>
+
+    <br>
+    <mat-list>
+        <mat-list-item (click)="openpage('/dashboard');makeactive('dashboard')" [ngClass]="this.active=='dashboard' ? 'selected list-item' : 'list-item'">
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <mat-label>Dashboard</mat-label>
+        </mat-list-item>
+
+        <!-- <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='orders'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='orders'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>format_list_bulleted</mat-icon>
+                        <mat-label>Orders</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/active-orders' ? '#39813e' : 'inherit'" class="no-left-margin">
+                <mat-label>Pending Orders</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/confirmed-orders' ? '#39813e' : 'inherit'" class="no-left-margin">
+                <mat-label>Confirmed Orders</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel> -->
+
+        <mat-list-item (click)="openpage('/orders');makeactive('orders')" [ngClass]="this.active=='orders' ? 'selected list-item' : 'list-item'">
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <mat-label>Orders</mat-label>
+        </mat-list-item>
+
+        <mat-list-item (click)="openpage('/cost');makeactive('cost')" [ngClass]="this.active=='cost' ? 'selected list-item' : 'list-item'">
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <mat-label>Cost Management</mat-label>
+        </mat-list-item>
+
+        <mat-list-item (click)="openpage('/product');makeactive('product')" [ngClass]="this.active=='product' ? 'selected list-item' : 'list-item'">
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <mat-label>Products</mat-label>
+        </mat-list-item>
+
+        <mat-list-item (click)="openpage('/stock');makeactive('stock')" [ngClass]="this.active=='stock' ? 'selected list-item' : 'list-item'">
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <mat-label>Stock</mat-label>
+        </mat-list-item>
+
+    </mat-list>
+</mat-nav-list>

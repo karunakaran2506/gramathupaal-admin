@@ -1,0 +1,57 @@
+.center{
+    text-align: center;
+}
+
+.pad-15{
+    padding: 10% 10%;
+}
+
+.pad-small{
+    padding: 5% 0%;
+}
+
+.wid-100{
+    width: 100%;
+    padding: 0% 3%;
+}
+
+.btn-custom{
+    color: white;
+    border-color: #39813e;
+    background-color: #39813e;
+}
+
+.flex{
+    display: inline-flex;
+}
+
+.sm-text{
+    padding: 1% 3%;
+    font-size: smaller;
+}
+
+a{
+    color: inherit;
+}
+
+.col6-img{
+    background: #39813e url('/assets/iot.png');
+
+    @media only screen and (max-width: 600px) {
+        display: none;
+      }
+}
+
+.pad-login{
+    padding : 5% 25%
+}
+
+@media only screen and (max-width: 600px) {
+    .pad-login{
+        padding : 5% 5%
+    }
+}
+
+::ng-deep .mat-form-field-prefix{
+    padding: 0em 1em;
+}

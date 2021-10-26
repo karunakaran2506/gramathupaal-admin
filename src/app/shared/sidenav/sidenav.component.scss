@@ -1,0 +1,78 @@
+mat-nav-list{
+    padding: 40px 0;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    padding-bottom: 0px!important;
+}
+
+#nohover{
+
+.mat-list-item{
+    background: none;
+}
+
+}
+
+.list-item{
+    margin: 3% 5%;
+    width: auto!important;
+    color: gray;
+}
+
+.list-item1{
+    margin: 3% 0%;
+    width: auto!important;
+    color: gray;
+}
+
+.list-item2{
+    margin: 3% 0%;
+    width: auto!important;
+    color: white;
+}
+
+.no-left-margin{
+    margin:0% 5%;
+}
+
+.selected, .selected:hover{
+    margin: 3% 5%;
+    background: #39813e;
+    color: #ffffff;
+    width: inherit;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+}
+
+.selected-panel, .selected-panel:hover{
+    margin: 3% 5%;
+    background: #39813e!important;
+    color: #ffffff;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+}
+
+.normal-panel{
+    margin: 3% 5%;
+}
+
+.h2{
+    padding: 0% 10%;
+    margin: 0px;
+    font-weight: bold;
+}
+
+.center{
+    padding: 5%;
+    text-align: center;
+    img{
+        height: 120px;
+        width: auto;
+    }
+}
+.mat-list-base { padding-top: 10px; }

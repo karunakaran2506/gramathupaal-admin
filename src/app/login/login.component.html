@@ -1,0 +1,65 @@
+<div>
+    <div class="container center pad-login">
+        <div class="row">
+            <div class="col-lg-12">
+                <img style="height: 10rem;" src="assets/icon.png" />
+                <h2 style="font-weight: bold;line-height: initial;">
+                    Welcome Back!
+                    <br>
+                    <span style="font-weight: 100;font-size: medium;">Sign in to continue to Gramathupaal</span>
+                </h2>
+            </div>
+            <div class="col-lg-12">
+                <form [formGroup]="loginForm" style="text-align: center;" (ngSubmit)="onSubmit(loginForm.value)">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <mat-form-field appearance="outline" class="wid-100">
+                                <input matInput placeholder="Enter phone number" type="tel" formControlName="phone">
+                                <mat-icon matPrefix>phone_android</mat-icon>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                <mat-hint>
+                                    <div class="validation-errors">
+                                        <ng-container *ngFor="let validation of validation_messages.phone">
+                                            <div class="error-message"
+                                                *ngIf="this.loginForm.status=='INVALID' && (this.loginForm.get('phone').hasError(validation.type) && (this.loginForm.get('phone').dirty || this.loginForm.get('phone').touched))">
+                                                <ion-icon name="information-circle-outline"></ion-icon>
+                                                {{ validation.message }}
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </mat-hint>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="wid-100">
+                                <input matInput placeholder="Password" type="password" formControlName="password">
+                                <mat-icon matPrefix>vpn_key</mat-icon>
+                                <mat-hint>
+                                    <div class="validation-errors">
+                                        <ng-container *ngFor="let validation of validation_messages.password">
+                                            <div class="error-message"
+                                                *ngIf="this.loginForm.status=='INVALID' && (this.loginForm.get('password').hasError(validation.type) && (this.loginForm.get('password').dirty || this.loginForm.get('password').touched))">
+                                                <ion-icon name="information-circle-outline"></ion-icon>
+                                                {{ validation.message }}
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <button style="width: 95%;padding:1%;" class="btn btn-custom">{{'Login' |
+                                uppercase}}</button>
+                        </div>
+
+                        <!-- <div class="col-lg-12 pad-small">
+                            <p>Forget Password ? <span (click)="openpage('/forget-password')"
+                                    style="color: #39813e;cursor: pointer;">Click here</span></p>
+                            <p>New to Gramathupaal ? <span (click)="openpage('/register')"
+                                    style="color: #39813e;cursor: pointer;">Click here</span></p>
+                        </div> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
