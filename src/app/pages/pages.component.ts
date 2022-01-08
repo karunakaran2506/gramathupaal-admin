@@ -11,6 +11,7 @@ import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confi
 export class PagesComponent implements OnInit {
   
   screenWidth: number;
+  user : any;
 
   constructor(
     private dialog : MatDialog,
@@ -18,6 +19,8 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.user = localStorage.getItem('user');
     this.screenWidth = window.innerWidth;
     
     window.onresize = () => {

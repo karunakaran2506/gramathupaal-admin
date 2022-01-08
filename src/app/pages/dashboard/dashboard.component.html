@@ -1,0 +1,44 @@
+<div class="section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Total Stores</p>
+                        <h2 class="card-text">
+                            <b>{{this.totalStores}}</b>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Today Sales</p>
+                        <h2 class="card-text">
+                            <b>{{this.todaySales | currency : 'INR'}}</b>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Today Order</p>
+                        <h2 class="card-text">
+                            <b>{{this.todayOrders}}</b>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+                    [responsive]="chartOptions.responsive"></apx-chart>
+            </div>
+        </div>
+    </div>
+</div>

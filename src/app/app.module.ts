@@ -17,6 +17,7 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
 import { ToastrModule } from 'ngx-toastr';
 import { NgOtpInputModule } from  'ng-otp-input';
 import { HttpClientModule } from '@angular/common/http';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     ConfirmationDialogComponent
   ],
   imports: [
+    NgApexchartsModule,
     HttpClientModule,
     NgOtpInputModule,
     FormsModule,

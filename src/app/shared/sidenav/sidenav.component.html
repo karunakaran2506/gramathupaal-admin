@@ -7,48 +7,140 @@
 
     <br>
     <mat-list>
-        <mat-list-item (click)="openpage('/dashboard');makeactive('dashboard')" [ngClass]="this.active=='dashboard' ? 'selected list-item' : 'list-item'">
+        <mat-list-item (click)="openpage('/dashboard');makeactive('dashboard')"
+            [ngClass]="this.active=='dashboard' ? 'selected list-item' : 'list-item'">
             <mat-icon mat-list-icon>dashboard</mat-icon>
             <mat-label>Dashboard</mat-label>
         </mat-list-item>
 
-        <!-- <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
-            <mat-expansion-panel-header [ngClass]="this.active=='orders'? 'selected-panel' : 'normal-panel'"
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='products'? 'selected-panel' : 'normal-panel'"
                 style="padding-left: 0px;">
                 <mat-panel-title>
-                    <mat-list-item [ngClass]="this.active=='orders'? 'list-item2' : 'list-item1'">
-                        <mat-icon mat-list-icon>format_list_bulleted</mat-icon>
-                        <mat-label>Orders</mat-label>
+                    <mat-list-item [ngClass]="this.active=='products'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>shopping_basket</mat-icon>
+                        <mat-label>Products</mat-label>
                     </mat-list-item>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-list-item [style.color]="this.activepage=='/active-orders' ? '#39813e' : 'inherit'" class="no-left-margin">
-                <mat-label>Pending Orders</mat-label>
+            <mat-list-item [style.color]="this.activepage=='/product' ? '#39813e' : 'inherit'"
+                (click)="openpage('/product');makeactive('product')" class="no-left-margin">
+                <mat-label>View Products</mat-label>
             </mat-list-item>
-            <mat-list-item [style.color]="this.activepage=='/confirmed-orders' ? '#39813e' : 'inherit'" class="no-left-margin">
-                <mat-label>Confirmed Orders</mat-label>
+            <mat-list-item [style.color]="this.activepage=='/add-product' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-product');makeactive('add-product')" class="no-left-margin">
+                <mat-label>Add Product</mat-label>
             </mat-list-item>
-        </mat-expansion-panel> -->
+        </mat-expansion-panel>
 
-        <mat-list-item (click)="openpage('/orders');makeactive('orders')" [ngClass]="this.active=='orders' ? 'selected list-item' : 'list-item'">
-            <mat-icon mat-list-icon>dashboard</mat-icon>
-            <mat-label>Orders</mat-label>
-        </mat-list-item>
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='accounts'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='accounts'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>account_balance</mat-icon>
+                        <mat-label>Cost Entries</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/add-cost' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-cost');makeactive('add-cost')" class="no-left-margin">
+                <mat-label>Add Cost Entry</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/cost' ? '#39813e' : 'inherit'"
+                (click)="openpage('/cost');makeactive('cost')" class="no-left-margin">
+                <mat-label>View Cost Entry</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
 
-        <mat-list-item (click)="openpage('/cost');makeactive('cost')" [ngClass]="this.active=='cost' ? 'selected list-item' : 'list-item'">
-            <mat-icon mat-list-icon>dashboard</mat-icon>
-            <mat-label>Cost Management</mat-label>
-        </mat-list-item>
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='accounts'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='accounts'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>money</mat-icon>
+                        <mat-label>Accounts</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/todays-sales' ? '#39813e' : 'inherit'"
+                (click)="openpage('/todays-sales');makeactive('todays-sales')" class="no-left-margin">
+                <mat-label>Today's Sales</mat-label>
+            </mat-list-item>
 
-        <mat-list-item (click)="openpage('/product');makeactive('product')" [ngClass]="this.active=='product' ? 'selected list-item' : 'list-item'">
-            <mat-icon mat-list-icon>dashboard</mat-icon>
-            <mat-label>Products</mat-label>
-        </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/orders' ? '#39813e' : 'inherit'"
+                (click)="openpage('/orders');makeactive('orders')" class="no-left-margin">
+                <mat-label>Past Sales</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
 
-        <mat-list-item (click)="openpage('/stock');makeactive('stock')" [ngClass]="this.active=='stock' ? 'selected list-item' : 'list-item'">
-            <mat-icon mat-list-icon>dashboard</mat-icon>
-            <mat-label>Stock</mat-label>
-        </mat-list-item>
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='stock'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='stock'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>store</mat-icon>
+                        <mat-label>Stock</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/today-stock' ? '#39813e' : 'inherit'"
+                (click)="openpage('/today-stock');makeactive('today-stock')" class="no-left-margin">
+                <mat-label>Today's Stock</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-stock' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-stock');makeactive('view-stock')" class="no-left-margin">
+                <mat-label>View Stock</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-stock' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-stock');makeactive('add-stock')" class="no-left-margin">
+                <mat-label>Add Stock</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='milkcard'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='milkcard'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>card_membership</mat-icon>
+                        <mat-label>Milkcard</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/view-milkcard' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-milkcard');makeactive('view-milkcard')" class="no-left-margin">
+                <mat-label>View Milkcard</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-milkcard' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-milkcard');makeactive('add-milkcard')" class="no-left-margin">
+                <mat-label>Add Milkcard</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='users'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='users'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>person</mat-icon>
+                        <mat-label>Users</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/customers' ? '#39813e' : 'inherit'"
+                (click)="openpage('/customers');makeactive('customers')" class="no-left-margin">
+                <mat-label>View Customers</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-user' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-user');makeactive('view-user')" class="no-left-margin">
+                <mat-label>View Store-Users</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-user' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-user');makeactive('add-user')" class="no-left-margin">
+                <mat-label>Add Store-User</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
 
     </mat-list>
 </mat-nav-list>

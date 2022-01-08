@@ -6,20 +6,21 @@
 
     <mat-drawer-content>
         <mat-toolbar style="position: sticky;top: 0;z-index: 1000;">
-                <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
-                    <mat-icon>notes</mat-icon>
+            <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+                <mat-icon>notes</mat-icon>
+            </button>
+            <span class="example-spacer"></span>
+            <mat-label>Admin</mat-label>
+            <button mat-icon-button class="toolbar-btn button2" [matMenuTriggerFor]="menu">
+                <mat-icon>settings</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="div2">
+                <button (click)="logout()" mat-menu-item>
+                    <mat-icon>power_settings_new</mat-icon>
+                    <span>Logout</span>
                 </button>
-                <span class="example-spacer"></span>
-                <button mat-icon-button class="toolbar-btn button2" [matMenuTriggerFor]="menu">
-                    <mat-icon>settings</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu" class="div2">
-                    <button (click)="logout()" mat-menu-item>
-                        <mat-icon>power_settings_new</mat-icon>
-                        <span>Logout</span>
-                    </button>
-                </mat-menu>
-            </mat-toolbar>
+            </mat-menu>
+        </mat-toolbar>
         <router-outlet></router-outlet>
         <app-footer class="footer"></app-footer>
     </mat-drawer-content>

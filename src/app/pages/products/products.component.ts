@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api/api.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class ProductsComponent implements OnInit {
   p=1;
 
   constructor(
-    private apiservice : ApiService
+    private apiservice : ApiService,
+    private router : Router
   ) { }
 
   ngOnInit(){
@@ -22,7 +24,9 @@ export class ProductsComponent implements OnInit {
     this.apiservice.listStores()
      .subscribe((data:any)=>{
        console.log('data', data);
+       this.storeSelected = data?.stores[0]?._id;
        this.stores = data.stores;
+       this.changeValue(this.storeSelected);
      })
   }
 
@@ -36,6 +40,12 @@ export class ProductsComponent implements OnInit {
        console.log('data', data);
        this.product = data.product;
      })
+  }
+
+  editProduct(value){
+    console.log('valye', value);
+    this.apiservice.productSelected = value;
+    this.router.navigateByUrl('edit-product');
   }
 
 }

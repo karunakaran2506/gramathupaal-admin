@@ -6,14 +6,14 @@
         <div class="col-lg-8 heading mar-r8">
             <mat-form-field style="margin-right: 3%;" appearance="outline">
                 <mat-label>Choose Store</mat-label>
-                <mat-select (selectionChange)="changeValue($event.value)">
+                <mat-select (selectionChange)="changeValue($event.value)" [(ngModel)]="storeSelected">
                     <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field style="margin-right: 3%;" appearance="outline">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" (dateChange)="datechange($event.target.value)">
+                <input matInput [matDatepicker]="picker" (dateChange)="datechange($event.target.value)" [(ngModel)]="dateSelected">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -26,7 +26,7 @@
         <div class="col-lg-12">
             <div class="card card-margin">
                 <div class="card-body">
-                    <table mdbTable class="table table-reponsive">
+                    <table mdbTable class="table table-reponsive table-striped">
                         <thead>
                             <tr class="vertical">
                                 <th style="vertical-align: inherit;" scope="col">
@@ -54,10 +54,10 @@
                                 *ngFor="let i = index; let data of entries | paginate: { itemsPerPage: 10, currentPage: p }">
                                 <td data-label="S.no">{{i+1}}</td>
                                 <td data-label="Type">{{data?.type === 'sales' ? 'Sales' : 'Expenses'}}</td>
-                                <td data-label="Date & Time">{{data?.entrydate | date : 'dd/MM/yy'}}</td>
-                                <td data-label="Amount">{{data?.amount | currency : 'INR'}}</td>
+                                <td data-label="Date & Time">{{data?.entrydate | date : 'dd/MM/yy, h:mm a'}}</td>
                                 <td data-label="Comment">{{data?.comment}}</td>
                                 <td data-label="User">{{data?.user?.name}}</td>
+                                <td data-label="Amount">{{data?.amount | currency : 'INR'}}</td>
                             </tr>
                             <tr *ngIf="this.totalincome">
                                 <td colspan="4"></td>

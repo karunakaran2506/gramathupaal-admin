@@ -1,72 +1,91 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <h4 class="mar-2"><b>Order Details</b></h4>
-            <ul class="list-group">
-                <li class="list-group-item">Order Number : {{this.orderdetail.orderid}}</li>
-                <li class="list-group-item">Total Amount : {{this.orderdetail.totalamount | currency : 'INR'}}</li>
-                <li class="list-group-item">Date & Time : {{this.orderdetail.createdat | date : 'dd/MM/yy, h:mm a'}}
-                </li>
-            </ul>
-        </div>
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title>Order Information</h2>
+<mat-dialog-content>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <h4 class="mar-2"><b>Order Details</b></h4>
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Order Number</b> : {{this.orderdetail.orderid}}</li>
+                    <li class="list-group-item"><b>Total Amount</b> : {{this.orderdetail.totalamount | currency : 'INR'}}</li>
+                    <li class="list-group-item"><b>Date & Time</b> : {{this.orderdetail.createdat | date : 'dd/MM/yy, h:mm a'}}
+                    </li>
+                    <li class="list-group-item"><b>Payment Method</b> : {{this.orderdetail.paymentMethod | titlecase}}</li>
+                    <li *ngIf="this.orderdetail?.ordercredit" class="list-group-item">Credit Reason : {{this.orderdetail?.ordercredit?.reason}}</li>
+                </ul>
+            </div>
 
-        <div class="col-lg-6">
-            <h4 class="mar-2"><b>Store Details</b></h4>
-            <ul class="list-group">
-                <li class="list-group-item">Store Name : {{this.orderdetail.store.name}}</li>
-                <li class="list-group-item">Store Location : {{this.orderdetail.store.location}}</li>
-            </ul>
+            <div class="col-lg-4">
+                <h4 class="mar-2"><b>Store Details</b></h4>
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Store Name</b> : {{this.orderdetail.store.name}}</li>
+                    <li class="list-group-item"><b>Store Location</b> : {{this.orderdetail.store.location}}</li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4">
+                <h4 class="mar-2"><b>Customer Details</b></h4>
+                <ul (click)="viewCustomer(this.orderdetail.customer)" class="list-group">
+                    <li class="list-group-item"><b>Name</b> : {{this.orderdetail.customer.name}}</li>
+                    <li class="list-group-item"><b>Phone</b> : {{this.orderdetail.customer.phone}}</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<br>
-<br>
+    <br>
 
-<div *ngIf="this.orderdetail?.orderitems?.length" class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card card-margin">
-                <div class="card-body">
-                    <table mdbTable class="table table-reponsive">
-                        <thead>
-                            <tr class="vertical">
-                                <th style="vertical-align: inherit;" scope="col">
-                                    S.no
-                                </th>
-                                <th style="vertical-align: inherit;" scope="col">
-                                    Product
-                                </th>
-                                <th style="vertical-align: inherit;" scope="col">
-                                    Quantity
-                                </th>
-                                <th style="vertical-align: inherit;" scope="col">
-                                    Amount
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="vertical" *ngFor="let i =index;let item of orderdetail.orderitems">
-                                <td data-label="S.no">{{i+1}}</td>
-                                <td data-label="Product">{{item.product.name}}&nbsp;{{item.product.quantity}}&nbsp;{{item.product.unit}}</td>
-                                <td data-label="Quantity">{{item.quantity}}</td>
-                                <td data-label="Amount">{{item.totalamount |
-                                    currency : 'INR'}}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"></td>
-                                <th>Subtotal</th>
-                                <td data-label="Sub-Total"><b>{{this.orderdetail.subtotal | currency : 'INR'}}</b></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"></td>
-                                <th>Total Amount</th>
-                                <td data-label="Total Amount"><b>{{this.orderdetail.totalamount | currency : 'INR'}}</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <div *ngIf="this.orderdetail?.orderitems?.length" class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <table mdbTable class="table table-reponsive table-striped">
+                            <thead>
+                                <tr class="vertical">
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        S.no
+                                    </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        Product
+                                    </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        Quantity
+                                    </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        Amount
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="vertical" *ngFor="let i =index;let item of orderdetail.orderitems">
+                                    <td data-label="S.no">{{i+1}}</td>
+                                    <td data-label="Product">
+                                        {{item.product.name}}&nbsp;{{item.product.quantity}}&nbsp;{{item.product.unit}}
+                                    </td>
+                                    <td data-label="Quantity">{{item.quantity}}</td>
+                                    <td data-label="Amount">{{item.totalamount |
+                                        currency : 'INR'}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <th>Subtotal</th>
+                                    <td data-label="Sub-Total"><b>{{this.orderdetail.subtotal | currency : 'INR'}}</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <th>Total Amount</th>
+                                    <td data-label="Total Amount"><b>{{this.orderdetail.totalamount | currency :
+                                            'INR'}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</mat-dialog-content>

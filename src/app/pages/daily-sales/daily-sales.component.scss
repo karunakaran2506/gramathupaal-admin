@@ -1,0 +1,15 @@
+.mar-r8{
+    text-align: end;
+    @media only screen and (max-width: 600px) {
+        text-align: inherit;
+    }
+}
+
+.bold{
+    font-size: large;
+    font-weight: bold!important;
+}
+
+.pad-top-5{
+    padding: 1%;
+}

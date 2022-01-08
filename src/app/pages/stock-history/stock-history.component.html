@@ -1,0 +1,63 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-8 heading">
+            <h2><b>Stock History</b></h2>
+        </div>
+        <div style="text-align: end;" class="col-lg-4 heading">
+            <button routerLink="/view-stock" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h2><b>{{this.product?.name}}&nbsp;{{this.product?.quantity}}&nbsp;-&nbsp;{{this.product?.unit | unit}}</b></h2>
+                        </div>
+                        <div class="col-lg-4 center">
+                            <h2><b>Available Stock : {{this.stock?.totalStockIn - this.stock?.totalStockOut}}</b></h2>
+                        </div>
+                        <div class="col-lg-4 end">
+                            <button routerLink="/add-stock" class="btn btn-primary">Add Stock</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table mdbTable class="table table-reponsive table-striped">
+                        <thead>
+                            <tr class="vertical">
+                                <th style="vertical-align: inherit;" scope="col">
+                                    S.no
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Date
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Stock In
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Stock Out
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="vertical"
+                                *ngFor="let i = index; let data of stockEntries | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td data-label="S.no">{{i+1}}</td>
+                                <td data-label="Date">{{data?.entrydate | date : 'dd/MM/yy h:mm a'}}</td>
+                                <td data-label="Stock In">{{data?.stocktype === 'in' ? data?.quantity : 0}}</td>
+                                <td data-label="Stock Out">{{data?.stocktype === 'out' ? data?.quantity : 0}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p=$event">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

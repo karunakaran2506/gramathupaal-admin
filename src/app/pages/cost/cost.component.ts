@@ -9,64 +9,68 @@ import { ApiService } from 'src/app/service/api/api.service';
 })
 export class CostComponent implements OnInit {
 
-  storeSelected : string;
-  dateSelected : string;
-  entries : Array<any>;
-  stores : Array<any>;
-  totalincome : number = 0;
-  totalexpense : number = 0;
-  p=1;
+  storeSelected: string;
+  dateSelected: Date = new Date();
+  entries: Array<any>;
+  stores: Array<any>;
+  totalincome: number = 0;
+  totalexpense: number = 0;
+  p = 1;
 
   constructor(
-    private apiservice : ApiService,
-    private toastr : ToastrService
+    private apiservice: ApiService,
+    private toastr: ToastrService
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
     this.apiservice.listStores()
-     .subscribe((data:any)=>{
-       console.log('data', data);
-       this.stores = data.stores;
-     })
+      .subscribe((data: any) => {
+        console.log('data', data);
+        this.storeSelected = data?.stores[0]?._id;
+        this.stores = data.stores;
+        this.datechange(this.dateSelected);
+      })
   }
 
-  datechange(value){
+  datechange(value) {
 
     this.totalexpense = 0;
     this.totalincome = 0;
 
     this.dateSelected = value;
 
-    if(this.storeSelected){
+    if (this.storeSelected) {
       let data = {
-        date : value,
-        store : this.storeSelected
+        date: value,
+        store: this.storeSelected
       }
       this.apiservice.listEntries(data)
-       .subscribe((data:any)=>{
-         console.log('data', data);
-         this.entries = data.entries;
+        .subscribe((data: any) => {
+          console.log('data', data);
+          this.entries = data.entries;
 
-         this.entries.map((x:any)=>{
-           if(x.type === 'expenses'){
-             this.totalexpense = this.totalexpense + x.amount;
-           }
-           else if(x.type === 'sales'){
-            this.totalincome = this.totalincome + x.amount;
-          }
-         })
-       })
+          this.entries.map((x: any) => {
+            if (x.type === 'expenses') {
+              this.totalexpense = this.totalexpense + x.amount;
+            }
+            else if (x.type === 'sales') {
+              this.totalincome = this.totalincome + x.amount;
+            }
+          })
+        })
     }
-    else{
+    else {
       this.toastr.error('Select a store');
     }
   }
 
-  changeValue(value){
+  changeValue(value) {
     this.storeSelected = value;
-    if(this.dateSelected){
+    if (this.dateSelected) {
       this.datechange(this.dateSelected);
+    } else {
+      this.toastr.error('Select a date');
     }
   }
 
