@@ -8,34 +8,33 @@ import { ApiService } from 'src/app/service/api/api.service';
 })
 export class CategoryComponent implements OnInit {
 
-  storeSelected : string;
-  category : Array<any>;
-  stores : Array<any>;
-  p=1;
+  storeSelected: string;
+  category: Array<any>;
+  stores: Array<any>;
+  p = 1;
 
   constructor(
-    private apiservice : ApiService
+    private apiservice: ApiService
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
     this.apiservice.listStores()
-     .subscribe((data:any)=>{
-       console.log('data', data);
-       this.stores = data.stores;
-     })
+      .subscribe((data: any) => {
+        this.stores = data.stores;
+        this.changeValue(data.stores[0]._id);
+      })
   }
 
-  changeValue(value){
-    this.storeSelected = value; 
+  changeValue(value) {
+    this.storeSelected = value;
     let data = {
-      store : this.storeSelected
+      store: this.storeSelected
     }
     this.apiservice.listCategory(data)
-     .subscribe((data:any)=>{
-       console.log('data', data);
-       this.category = data.category;
-     })
+      .subscribe((data: any) => {
+        this.category = data.category;
+      })
   }
 
 }

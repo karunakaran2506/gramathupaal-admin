@@ -6,7 +6,7 @@
         <div class="col-lg-4 heading">
             <mat-form-field style="margin-right: 3%;" appearance="outline">
                 <mat-label>Choose Store</mat-label>
-                <mat-select (selectionChange)="changeValue($event.value)">
+                <mat-select (selectionChange)="changeValue($event.value)" [(ngModel)]="storeSelected">
                     <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
                 </mat-select>
             </mat-form-field>

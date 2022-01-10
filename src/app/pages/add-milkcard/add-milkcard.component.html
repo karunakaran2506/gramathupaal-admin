@@ -11,13 +11,13 @@
         <div class="col-lg-12">
             <div class="card card-margin">
                 <div class="card-body">
-                    <form [formGroup]="addMilkcard" (ngSubmit)="onSubmit(addMilkcard.value)">
+                    <form [formGroup]="addMilkcard" (ngSubmit)="onSubmit(addMilkcard?.value)">
                         <div class="row">
                             <div class="col-lg-4">
                                 <label class="form-label">
                                     <h3><b>Choose Store</b></h3>
                                 </label>
-                                <select (change)="changeValue($event.target.value)" [(ngModel)]="storeSelected"
+                                <select (change)="changeValue($event.target.value)" formControlName="store" [(ngModel)]="storeSelected"
                                     class="form-control">
                                     <option *ngFor="let data of stores" [value]="data._id">{{data.name}}
                                     </option>
@@ -27,7 +27,7 @@
                                 <label class="form-label">
                                     <h3><b>Choose Product</b></h3>
                                 </label>
-                                <select formControlName="product" class="form-control">
+                                <select (change)="changeProduct($event.target.value)" formControlName="product" class="form-control">
                                     <option *ngFor="let data of product" value="{{data?._id}}">
                                         {{data?.name}}&nbsp;{{data?.quantity}}&nbsp;{{data?.unit | unit}}
                                     </option>
@@ -47,7 +47,7 @@
                                 <label for="validity" class="form-label">
                                     <h3><b>Validity</b></h3>
                                 </label>
-                                <input formControlName="validity" type="number" min="1" id="validity"
+                                <input (change)="setPrice()" formControlName="validity" type="number" min="1" id="validity"
                                     class="form-control" placeholder="Enter validity">
                             </div>
                             <div class="col-lg-4">

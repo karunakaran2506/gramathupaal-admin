@@ -15,6 +15,7 @@ export class AddMilkcardComponent implements OnInit {
 
   addMilkcard: FormGroup;
   storeSelected: string;
+  productSelected: any;
   product: Array<any>;
   stores: Array<any>;
 
@@ -25,21 +26,23 @@ export class AddMilkcardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.addMilkcard = new FormGroup({
-      product: new FormControl({}),
-      name: new FormControl(),
-      validity: new FormControl(),
-      price: new FormControl()
-    })
-
     this.apiservice.listStores()
       .subscribe((data: any) => {
         this.storeSelected = data?.stores[0]?._id;
         this.stores = data?.stores;
+        this.changeValue(this.storeSelected);
       })
+
+    this.addMilkcard = new FormGroup({
+      store: new FormControl(''),
+      product: new FormControl(''),
+      name: new FormControl(''),
+      validity: new FormControl(1),
+      price: new FormControl(0)
+    })
   }
 
-  changeValue(value) {
+  changeValue(value:any) {
     this.storeSelected = value;
     let data = {
       store: this.storeSelected
@@ -48,6 +51,18 @@ export class AddMilkcardComponent implements OnInit {
       .subscribe((data: any) => {
         this.product = data?.product.filter((x:any) => x.milktype === 'a2milk');;
       })
+  }
+
+  changeProduct(value:string){
+    const product = this.product?.filter((x:any) => x._id === value);
+    this.productSelected = product[0];
+    this.setPrice();
+  }
+
+  setPrice(){
+    this.addMilkcard.patchValue({
+      price : this.productSelected?.price * (this.addMilkcard?.value?.validity > 0 ? this.addMilkcard?.value?.validity - 1 : 0)
+    })
   }
 
   onSubmit(value) {

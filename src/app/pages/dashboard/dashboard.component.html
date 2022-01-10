@@ -4,30 +4,30 @@
             <div class="col-lg-4 pad-top-5">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-title">Total Stores</p>
-                        <h2 class="card-text">
+                        <h2 class="card-title">Total Stores</h2>
+                        <h1 class="card-text">
                             <b>{{this.totalStores}}</b>
-                        </h2>
+                        </h1>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 pad-top-5">
+            <div (click)="openPage('/todays-sales')" class="col-lg-4 pad-top-5">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-title">Today Sales</p>
-                        <h2 class="card-text">
+                        <h2 class="card-title">Today Sales</h2>
+                        <h1 class="card-text">
                             <b>{{this.todaySales | currency : 'INR'}}</b>
-                        </h2>
+                        </h1>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 pad-top-5">
+            <div (click)="openPage('/todays-sales')" class="col-lg-4 pad-top-5">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-title">Today Order</p>
-                        <h2 class="card-text">
+                        <h2 class="card-title">Today Order</h2>
+                        <h1 class="card-text">
                             <b>{{this.todayOrders}}</b>
-                        </h2>
+                        </h1>
                     </div>
                 </div>
             </div>

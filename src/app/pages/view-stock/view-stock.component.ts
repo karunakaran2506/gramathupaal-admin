@@ -14,15 +14,21 @@ export class ViewStockComponent implements OnInit {
   dateSelected: string;
   stockEntries: Array<any> = [];
   category: Array<any> = [];
+  milkCategory: Array<any> = [];
+  otherCategory: Array<any> = [];
   stores: Array<any>;
   totalincome: number = 0;
   totalexpense: number = 0;
-  p=1;
+  totala1milk: any;
+  totala2milk: any;
+  totalbuffalomilk: any;
+  stockType: any = 'others';
+  p = 1;
 
   constructor(
     private apiservice: ApiService,
     private toastr: ToastrService,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,6 +39,10 @@ export class ViewStockComponent implements OnInit {
         this.stores = data?.stores;
         this.storeChange(this.storeSelected);
       })
+  }
+
+  typeChange(value) {
+    this.stockType = value;
   }
 
   storeChange(value) {
@@ -46,12 +56,48 @@ export class ViewStockComponent implements OnInit {
       }
 
       this.apiservice.listCategory(data)
-       .subscribe((data:any)=>{
-         this.category = data.category;
-       })
+        .subscribe((data: any) => {
+          this.category = data?.category;
+          this.milkCategory = data?.category?.filter((category: any) => category.categorytype === 'milk');
+          this.otherCategory = data?.category?.filter((category: any) => category.categorytype === 'others');
+        })
       this.apiservice.listStockEntries(data)
         .subscribe((data: any) => {
-          this.stockEntries = data.entries;
+          this.stockEntries = data?.entries;
+          let totala1milkstockin = 0;
+          let totala1milkstockout = 0;
+          let totala2milkstockin = 0;
+          let totala2milkstockout = 0;
+          let totalbuffalomilkstockin = 0;
+          let totalbuffalomilkstockout = 0;
+          data.entries?.map((item: any) => {
+            if (item?.product?.milktype === 'a1milk') {
+              totala1milkstockin = item?.totalStockIn + totala1milkstockin;
+              totala1milkstockout = item?.totalStockOut + totala1milkstockout;
+            } else if (item?.product?.milktype === 'a2milk') {
+              totala2milkstockin = item?.totalStockIn + totala2milkstockin;
+              totala2milkstockout = item?.totalStockOut + totala2milkstockout;
+            } else if (item?.product?.milktype === 'buffalomilk') {
+              totalbuffalomilkstockin = item?.totalStockIn + totalbuffalomilkstockin;
+              totalbuffalomilkstockout = item?.totalStockOut + totalbuffalomilkstockout;
+            }
+          })
+
+          this.totala1milk = {
+            stockIn: totala1milkstockin,
+            stockOut: totala1milkstockout,
+            available: totala1milkstockin - totala1milkstockout
+          };
+          this.totala2milk = {
+            stockIn: totala2milkstockin,
+            stockOut: totala2milkstockout,
+            available: totala2milkstockin - totala2milkstockout
+          };
+          this.totalbuffalomilk = {
+            stockIn: totalbuffalomilkstockin,
+            stockOut: totalbuffalomilkstockout,
+            available: totalbuffalomilkstockin - totalbuffalomilkstockout
+          };
         })
     }
     else {
@@ -59,8 +105,7 @@ export class ViewStockComponent implements OnInit {
     }
   }
 
-  viewStockHistory(data){
-    console.log('data', data);
+  viewStockHistory(data) {
     this.apiservice.stockSelected = data;
     this.router.navigateByUrl('stock-history');
   }

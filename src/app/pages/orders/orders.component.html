@@ -1,7 +1,7 @@
 <div class="container-fluid" style="padding-bottom:1%">
     <div class="row">
         <div class="col-lg-4 heading">
-            <h2><b>Orders</b></h2>
+            <h2><b>Past Sales</b></h2>
         </div>
         <div class="col-lg-8 heading mar-r8">
             <mat-form-field style="margin-right: 3%;" appearance="outline">
@@ -26,6 +26,91 @@
                     <mat-option value="product">By Product</mat-option>
                 </mat-select>
             </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-3 pad-top-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Sales</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalSales | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('cash')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Cash</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalcash | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('card')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Card</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalcard | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('credit')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Credit</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalcredit | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('free')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Free / Donation</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalfree | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('upi')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total UPI</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalupi | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('token')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Token Sales</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totaltoken | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('milkcard')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Milkcard Sales</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalmilkcard | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -79,9 +164,9 @@
                                 </td>
                             </tr>
                             <tr *ngIf="this.orders?.length" class="vertical">
-                                <td colspan="6"><span class="bold">Total Sales :</span> </td>
+                                <td colspan="4"><span class="bold">Total Sales :</span> </td>
                                 <td><span class="bold">{{this.totalSales | currency : 'INR'}}</span></td>
-                                <td></td>
+                                <td colspan="3"></td>
                             </tr>
                         </tbody>
                     </table>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/service/api/api.service';
 import { ChartComponent, ApexChart, ApexNonAxisChartSeries, ApexResponsive } from "ng-apexcharts";
+import { Router } from '@angular/router';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -33,7 +34,7 @@ export class DashboardComponent implements OnInit {
 
   public chartOptions: Partial<ChartOptions>;
 
-  constructor(private apiservice: ApiService) { }
+  constructor(private apiservice: ApiService, private router : Router) { }
 
   async ngOnInit() {
 
@@ -78,6 +79,10 @@ export class DashboardComponent implements OnInit {
         this.todayOrders = this.info?.todayOrders;
         this.totalStores = this.info?.totalStores;
       })
+  }
+
+  openPage(page:string){
+    this.router.navigateByUrl(page);
   }
 
 }

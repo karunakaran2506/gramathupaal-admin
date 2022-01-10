@@ -39,6 +39,7 @@ export class AddStockComponent implements OnInit {
       .subscribe((data: any) => {
         this.storeSelected = data?.stores[0]?._id;
         this.stores = data?.stores;
+        this.changeValue(this.storeSelected);
       })
   }
 

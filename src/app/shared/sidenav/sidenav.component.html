@@ -14,6 +14,26 @@
         </mat-list-item>
 
         <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='category'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='category'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>shopping_basket</mat-icon>
+                        <mat-label>Categories</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/category' ? '#39813e' : 'inherit'"
+                (click)="openpage('/category');makeactive('category')" class="no-left-margin">
+                <mat-label>View Category</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-category' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-category');makeactive('add-category')" class="no-left-margin">
+                <mat-label>Add Category</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
             <mat-expansion-panel-header [ngClass]="this.active=='products'? 'selected-panel' : 'normal-panel'"
                 style="padding-left: 0px;">
                 <mat-panel-title>
@@ -71,6 +91,27 @@
             <mat-list-item [style.color]="this.activepage=='/orders' ? '#39813e' : 'inherit'"
                 (click)="openpage('/orders');makeactive('orders')" class="no-left-margin">
                 <mat-label>Past Sales</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='saleshistory'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='saleshistory'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>money</mat-icon>
+                        <mat-label>Sales History</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/milkcard-history' ? '#39813e' : 'inherit'"
+                (click)="openpage('/milkcard-history');makeactive('milkcard-history')" class="no-left-margin">
+                <mat-label>Milkcard Sales</mat-label>
+            </mat-list-item>
+
+            <mat-list-item [style.color]="this.activepage=='/token-history' ? '#39813e' : 'inherit'"
+                (click)="openpage('/token-history');makeactive('token-history')" class="no-left-margin">
+                <mat-label>Token Sales</mat-label>
             </mat-list-item>
         </mat-expansion-panel>
 

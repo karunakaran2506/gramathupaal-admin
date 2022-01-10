@@ -16,7 +16,7 @@ export class AddProductComponent implements OnInit {
   addProduct: FormGroup;
   category = [];
   store = [];
-  units = ['millilitre', 'litre', 'gram', 'kilogram']
+  units = ['millilitre', 'litre', 'gram', 'kilogram', 'piece']
   imageSrc: any;
   files: any;
   dinein : Boolean;

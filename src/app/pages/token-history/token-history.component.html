@@ -1,0 +1,78 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-4 heading">
+            <h2><b>Token Sales</b></h2>
+        </div>
+        <div class="col-lg-8 heading mar-r8">
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose Store</mat-label>
+                <mat-select (selectionChange)="changeValue($event.value)" [(ngModel)]="storeSelected">
+                    <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" (dateChange)="datechange($event.target.value)" [(ngModel)]="dateSelected">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <table mdbTable class="table table-reponsive table-striped">
+                        <thead>
+                            <tr class="vertical">
+                                <th style="vertical-align: inherit;" scope="col">
+                                    S.no
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Product
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Price
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Date & Time
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Payment Method
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Customer Name
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Mobile Number
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Store Staff
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="vertical"
+                                *ngFor="let i = index; let data of history | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td data-label="S.no">{{i+1}}</td>
+                                <td data-label="Product">{{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}} x <span class="bold">{{data?.quantity}}</span></td>
+                                <td data-label="Price">{{data?.price | currency : 'INR'}}</td>
+                                <td data-label="Date & Time">{{data?.createdat | date : 'dd/MM/yy, h:mm a'}}</td>
+                                <td data-label="Payment Method">{{data?.paymentMethod | titlecase}}</td>
+                                <td data-label="Customer Name">{{data?.customer?.name}}</td>
+                                <td data-label="Mobile Number">{{data?.customer?.phone}}</td>
+                                <td data-label="Store Staff">{{data?.soldby?.name }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p=$event">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

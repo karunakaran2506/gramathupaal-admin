@@ -255,6 +255,14 @@ export class ApiService {
     })
   }
 
+  datewiseOrderDetails(data:any){
+    return this.http.post( this.baseurl + 'datewiseOrderDetails', data,{
+      headers : {
+        token : localStorage.getItem('token')
+      }
+    })
+  }
+
   createMilkcard(data:any){
     return this.http.post( this.baseurl + 'createMilkcard', data, {
       headers : {
@@ -306,6 +314,22 @@ export class ApiService {
 
   overallTodayOrderDetails(){
     return this.http.get( this.baseurl + 'overallTodayOrderDetails', {
+      headers : {
+        token : localStorage.getItem('token')
+      }
+    })
+  }
+
+  listMilkcardHistorybyStore(data:any){
+    return this.http.post( this.baseurl + 'listMilkcardHistorybyStore', data, {
+      headers : {
+        token : localStorage.getItem('token')
+      }
+    })
+  }
+
+  listTokenHistorybyStore(data:any){
+    return this.http.post( this.baseurl + 'listTokenHistorybyStore', data, {
       headers : {
         token : localStorage.getItem('token')
       }

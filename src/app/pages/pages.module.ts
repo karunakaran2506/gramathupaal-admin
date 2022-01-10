@@ -35,6 +35,8 @@ import { OrdersbypaymethodComponent } from './ordersbypaymethod/ordersbypaymetho
 import { CustomersComponent } from './customers/customers.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { TodaysStockComponent } from './todays-stock/todays-stock.component';
+import { MilkcardHistoryComponent } from './milkcard-history/milkcard-history.component';
+import { TokenHistoryComponent } from './token-history/token-history.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -64,6 +66,8 @@ const routes: Routes = [
     { path: 'past-sessions', component: PastSessionsComponent, canActivate: [AuthGuard] },
     { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
     { path: 'view-customer', component: ViewCustomerComponent, canActivate: [AuthGuard] },
+    { path: 'milkcard-history', component: MilkcardHistoryComponent, canActivate: [AuthGuard] },
+    { path: 'token-history', component: TokenHistoryComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -105,7 +109,9 @@ const routes: Routes = [
         OrdersbypaymethodComponent,
         CustomersComponent,
         ViewCustomerComponent,
-        TodaysStockComponent
+        TodaysStockComponent,
+        MilkcardHistoryComponent,
+        TokenHistoryComponent
     ],
     providers: [
         AuthGuard

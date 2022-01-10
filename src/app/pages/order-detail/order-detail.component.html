@@ -9,11 +9,15 @@
                 <h4 class="mar-2"><b>Order Details</b></h4>
                 <ul class="list-group">
                     <li class="list-group-item"><b>Order Number</b> : {{this.orderdetail.orderid}}</li>
-                    <li class="list-group-item"><b>Total Amount</b> : {{this.orderdetail.totalamount | currency : 'INR'}}</li>
-                    <li class="list-group-item"><b>Date & Time</b> : {{this.orderdetail.createdat | date : 'dd/MM/yy, h:mm a'}}
+                    <li class="list-group-item"><b>Total Amount</b> : {{this.orderdetail.totalamount | currency :
+                        'INR'}}</li>
+                    <li class="list-group-item"><b>Date & Time</b> : {{this.orderdetail.createdat | date : 'dd/MM/yy,
+                        h:mm a'}}
                     </li>
-                    <li class="list-group-item"><b>Payment Method</b> : {{this.orderdetail.paymentMethod | titlecase}}</li>
-                    <li *ngIf="this.orderdetail?.ordercredit" class="list-group-item">Credit Reason : {{this.orderdetail?.ordercredit?.reason}}</li>
+                    <li class="list-group-item"><b>Payment Method</b> : {{this.orderdetail.paymentMethod | titlecase}}
+                    </li>
+                    <li *ngIf="this.orderdetail?.ordercredit" class="list-group-item">Credit Reason :
+                        {{this.orderdetail?.ordercredit?.reason}}</li>
                 </ul>
             </div>
 
