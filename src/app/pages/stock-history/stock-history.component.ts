@@ -19,7 +19,6 @@ export class StockHistoryComponent implements OnInit {
     
     this.stock = this.apiservice?.stockSelected;
     this.product = this.apiservice?.stockSelected?.product;
-    console.log('data', this.product);
     let data = {
       product: this.product?._id
     }

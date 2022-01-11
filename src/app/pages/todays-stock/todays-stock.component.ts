@@ -63,37 +63,46 @@ export class TodaysStockComponent implements OnInit {
           this.stockEntries = data?.entries;
           let totala1milkstockin = 0;
           let totala1milkstockout = 0;
+          let totala1milkbyproduct = 0;
           let totala2milkstockin = 0;
           let totala2milkstockout = 0;
+          let totala2milkbyproduct = 0;
           let totalbuffalomilkstockin = 0;
           let totalbuffalomilkstockout = 0;
+          let totalbuffalomilkbyproduct = 0;
           data.entries?.map((item: any) => {
             if (item?.product?.milktype === 'a1milk') {
               totala1milkstockin = item?.totalStockIn + totala1milkstockin;
               totala1milkstockout = item?.totalStockOut + totala1milkstockout;
+              totala1milkbyproduct = item?.totalByproduct + totala1milkbyproduct;
             } else if (item?.product?.milktype === 'a2milk') {
               totala2milkstockin = item?.totalStockIn + totala2milkstockin;
               totala2milkstockout = item?.totalStockOut + totala2milkstockout;
+              totala2milkbyproduct = item?.totalByproduct + totala2milkbyproduct;
             } else if (item?.product?.milktype === 'buffalomilk') {
               totalbuffalomilkstockin = item?.totalStockIn + totalbuffalomilkstockin;
               totalbuffalomilkstockout = item?.totalStockOut + totalbuffalomilkstockout;
+              totalbuffalomilkbyproduct = item?.totalByproduct + totalbuffalomilkbyproduct;
             }
           })
 
           this.totala1milk = {
             stockIn : totala1milkstockin,
             stockOut : totala1milkstockout,
-            available : totala1milkstockin - totala1milkstockout
+            byproduct : totala1milkbyproduct,
+            available : totala1milkstockin - (totala1milkstockout + totala1milkbyproduct)
           };
           this.totala2milk = {
             stockIn : totala2milkstockin,
             stockOut : totala2milkstockout,
-            available : totala2milkstockin - totala2milkstockout
+            byproduct : totala2milkbyproduct,
+            available : totala2milkstockin - (totala2milkstockout + totala2milkbyproduct)
           };
           this.totalbuffalomilk = {
             stockIn : totalbuffalomilkstockin,
             stockOut : totalbuffalomilkstockout,
-            available : totalbuffalomilkstockin - totalbuffalomilkstockout
+            byproduct : totalbuffalomilkbyproduct,
+            available : totalbuffalomilkstockin - (totalbuffalomilkstockout + totalbuffalomilkbyproduct)
           };
         })
     }

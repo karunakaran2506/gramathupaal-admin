@@ -137,6 +137,42 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-12 heading">
+                <h2><b>Today's By-product</b></h2>
+            </div>
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Cow Milk (A1)</h2>
+                        <h1 class="card-text">
+                            <b>{{this.totala1milk?.byproduct | number: '1.2-2'}} litres</b>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Cow Milk (A2)</h2>
+                        <h1 class="card-text">
+                            <b>{{this.totala2milk?.byproduct | number: '1.2-2'}} litres</b>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Buffalo Milk</h2>
+                        <h1 class="card-text">
+                            <b>{{this.totalbuffalomilk?.byproduct | number: '1.2-2'}} litres</b>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container-fluid">
@@ -159,6 +195,9 @@
                                     <th style="vertical-align: inherit;" scope="col">
                                         Stock Out
                                     </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        By-product
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let item of milkCategory">
@@ -170,6 +209,7 @@
                                     </td>
                                     <td data-label="Stock In">{{data?.totalStockIn}}</td>
                                     <td data-label="Stock Out">{{data?.totalStockOut}}</td>
+                                    <td data-label="By-Product">{{data?.totalByproduct}}</td>
                                 </tr>
                             </tbody>
                         </table>

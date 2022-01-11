@@ -30,7 +30,8 @@ export class AddStockComponent implements OnInit {
     this.addStock = new FormGroup({
       product: new FormControl({}),
       store: new FormControl(),
-      type: new FormControl(),
+      type: new FormControl('all'),
+      stocktype: new FormControl('in'),
       quantity: new FormControl(),
       entryDate: new FormControl(this.entryDate),
     })
@@ -63,8 +64,7 @@ export class AddStockComponent implements OnInit {
     }
   }
 
-  onSubmit(value) {
-    console.log('value', value);
+  onSubmit(value: any) {
     if (this.addStock.status === 'INVALID') {
       this.toastr.error('Enter valid data');
     }
@@ -72,13 +72,11 @@ export class AddStockComponent implements OnInit {
       const product = value?.product?.split(",");
       let data = {
         ...value,
-        product : product[0],
-        producttype : product[1],
+        product: product[0],
+        producttype: product[1],
         entryDate: this.entryDate,
         store: this.storeSelected
       };
-
-      console.log('data', data);
 
       this.apiservice.saveStockEntry(data)
         .subscribe((data: any) => {
