@@ -65,6 +65,7 @@ export class AddStockComponent implements OnInit {
   }
 
   onSubmit(value: any) {
+    console.log('addStock', this.addStock?.value);
     if (this.addStock.status === 'INVALID') {
       this.toastr.error('Enter valid data');
     }

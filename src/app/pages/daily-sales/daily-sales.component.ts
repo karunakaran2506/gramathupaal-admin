@@ -19,20 +19,20 @@ export class DailySalesComponent implements OnInit {
   stores: Array<any>;
   viewType = 'order';
   totalSales: number = 0.00;
-  totalcredit : number = 0;
-  totalfree : number = 0;
-  totalcash : number = 0;
-  totalcard : number = 0;
-  totalupi : number = 0;
-  totaltoken : number = 0;
-  totalmilkcard : number = 0;
+  totalcredit: number = 0;
+  totalfree: number = 0;
+  totalcash: number = 0;
+  totalcard: number = 0;
+  totalupi: number = 0;
+  totaltoken: number = 0;
+  totalmilkcard: number = 0;
   p = 1;
 
   constructor(
     private apiservice: ApiService,
     private toastr: ToastrService,
     public dialog: MatDialog,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -60,14 +60,14 @@ export class DailySalesComponent implements OnInit {
     this.getData();
   }
 
-  openDialog(order:any) {
+  openDialog(order: any) {
     this.apiservice.orderselected = order;
     this.dialog.open(OrderDetailComponent);
   }
 
   openOrders(paymentMethod: any) {
-    const orders = this.orders.filter((x:any) => x.paymentMethod === paymentMethod);
-    this.dialog.open( OrdersbypaymethodComponent , {
+    const orders = this.orders.filter((x: any) => x.paymentMethod === paymentMethod);
+    this.dialog.open(OrdersbypaymethodComponent, {
       closeOnNavigation: true,
       data: orders
     });
@@ -105,7 +105,14 @@ export class DailySalesComponent implements OnInit {
           this.stocks = data.entries;
           let totalSales = 0;
           this.stocks.map((x: any) => {
-            totalSales = (x.quantity * x?.product?.price) + totalSales;
+            if (x?.product?.type === 'milk') {
+              const productquantity = x?.product?.quantity;
+              const quantity = x?.product?.unit === 'millilitre' ? (productquantity / 1000) : productquantity;
+              x.quantity = (x.quantity / quantity);
+              totalSales = (x.quantity * x?.product?.price) + totalSales;
+            } else {
+              totalSales = (x.quantity * x?.product?.price) + totalSales;
+            }
           })
           this.totalSales = totalSales;
         })
