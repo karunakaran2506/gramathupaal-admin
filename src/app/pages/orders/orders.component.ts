@@ -113,7 +113,14 @@ export class OrdersComponent implements OnInit {
           this.stocks = data.entries;
           let totalSales = 0;
           this.stocks.map((x: any) => {
-            totalSales = (x.quantity * x?.product?.price) + totalSales;
+            if (x?.product?.type === 'milk') {
+              const productquantity = x?.product?.quantity;
+              const quantity = x?.product?.unit === 'millilitre' ? (productquantity / 1000) : productquantity;
+              x.quantity = (x.quantity / quantity);
+              totalSales = (x.quantity * x?.product?.price) + totalSales;
+            } else {
+              totalSales = (x.quantity * x?.product?.price) + totalSales;
+            }
           })
           this.totalSales = totalSales;
         })

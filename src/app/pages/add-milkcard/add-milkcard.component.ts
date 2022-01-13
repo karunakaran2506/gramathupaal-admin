@@ -60,8 +60,9 @@ export class AddMilkcardComponent implements OnInit {
   }
 
   setPrice(){
+    const validity = this.addMilkcard?.value?.validity;
     this.addMilkcard.patchValue({
-      price : this.productSelected?.price * (this.addMilkcard?.value?.validity > 0 ? this.addMilkcard?.value?.validity - 1 : 0)
+      price : this.productSelected?.price * (validity > 30 ? validity - 1 : validity)
     })
   }
 
@@ -85,6 +86,6 @@ export class AddMilkcardComponent implements OnInit {
   }
 
   oncancel() {
-    this.formGroupDirective.reset();
+    this.formGroupDirective.resetForm();
   }
 }
