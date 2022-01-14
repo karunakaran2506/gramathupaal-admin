@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 heading">
-            <h2><b>Add Store User</b></h2>
+            <h2><b>Add Delivery User</b></h2>
         </div>
     </div>
     <div class="row">
@@ -10,52 +10,45 @@
                 <div class="card-body">
                     <form [formGroup]="addUserForm" (ngSubmit)="onSubmit(addUserForm.value)">
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label for="name" class="form-label">
                                     <h3><b>Name</b></h3>
                                 </label>
                                 <input formControlName="name" type="text" id="name" class="form-control"
                                     placeholder="Enter Name">
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label for="phone" class="form-label">
                                     <h3><b>Phone / Username</b></h3>
                                 </label>
                                 <input formControlName="phone" type="number" minlength="10" maxlength="10" min="1" id="phone" class="form-control"
                                     placeholder="Enter phone">
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label for="email" class="form-label">
                                     <h3><b>Email</b></h3>
                                 </label>
                                 <input formControlName="email" type="email" id="email" class="form-control"
                                     placeholder="Enter email">
                             </div>
-                            <div class="col-lg-3">
-                                <label for="product-image" class="form-label">
-                                    <h3><b>Image</b></h3>
-                                    <!-- <img style="height: 10px;width: 10px;" [src]="this.imageSrc" /> -->
-                                </label>
-                                <input (change)="onFileChange($event)" formControlName="file" type="file" id="product-image" class="form-control">
-                            </div>
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label for="password" class="form-label">
                                     <h3><b>Password</b></h3>
                                 </label>
                                 <input formControlName="password" type="password" id="password" class="form-control"
                                     placeholder="Enter password">
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label for="adhar" class="form-label">
                                     <h3><b>Aadhar Number</b></h3>
                                 </label>
                                 <input formControlName="adhar" type="text" id="adhar" class="form-control"
                                     placeholder="Enter adhar">
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label class="form-label">
                                     <h3><b>Choose Store</b></h3>
                                 </label>

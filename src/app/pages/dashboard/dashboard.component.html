@@ -35,7 +35,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
+            <div *ngIf="this.todaySales" class="col-lg-6">
                 <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
                     [responsive]="chartOptions.responsive"></apx-chart>
             </div>

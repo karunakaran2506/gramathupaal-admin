@@ -1,0 +1,58 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-8 heading">
+            <h2><b>Delivery Man</b></h2>
+        </div>
+        <div class="col-lg-4 heading">
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose Store</mat-label>
+                <mat-select (selectionChange)="changeValue($event.value)" [(ngModel)]="storeSelected">
+                    <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <table mdbTable class="table table-reponsive table-striped">
+                        <thead>
+                            <tr class="vertical">
+                                <th style="vertical-align: inherit;" scope="col">
+                                    S.no
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Name
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Phone
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Email
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Adhar Number
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="vertical" *ngFor="let i = index; let data of deliveryman | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td data-label="S.no">{{i+1}}</td>
+                                <td data-label="Name">{{data?.name}}</td>
+                                <td data-label="Phone">{{data?.phone}}</td>
+                                <td data-label="Email">{{data?.email}}</td>
+                                <td data-label="Adhar Number">{{data?.adhar}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p=$event">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

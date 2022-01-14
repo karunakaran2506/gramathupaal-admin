@@ -5,19 +5,21 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api/api.service';
 
 @Component({
-  selector: 'app-add-milkcard',
-  templateUrl: './add-milkcard.component.html',
-  styleUrls: ['./add-milkcard.component.scss']
+  selector: 'app-deliveryavailablity',
+  templateUrl: './deliveryavailablity.component.html',
+  styleUrls: ['./deliveryavailablity.component.scss']
 })
-export class AddMilkcardComponent implements OnInit {
+export class DeliveryavailablityComponent implements OnInit {
 
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
 
-  addMilkcard: FormGroup;
+  deliveryAvailablity: FormGroup;
   storeSelected: string;
-  productSelected: any;
-  product: Array<any>;
+  customerSelected : any;
   stores: Array<any>;
+  customer: Array<any>;
+  customerorders: Array<any>;
+  entrydate = new Date();
 
   constructor(
     private apiservice: ApiService,
@@ -26,57 +28,58 @@ export class AddMilkcardComponent implements OnInit {
 
   ngOnInit() {
 
+    this.deliveryAvailablity = new FormGroup({
+      store: new FormControl(''),
+      customer: new FormControl(''),
+      comments: new FormControl(''),
+      subscriptionpackorder: new FormControl(),
+      availablity: new FormControl(false),
+      entrydate: new FormControl(this.entrydate),
+    })
+
     this.apiservice.listStores()
       .subscribe((data: any) => {
         this.storeSelected = data?.stores[0]?._id;
         this.stores = data?.stores;
         this.changeValue(this.storeSelected);
       })
-
-    this.addMilkcard = new FormGroup({
-      store: new FormControl(''),
-      product: new FormControl(''),
-      name: new FormControl(''),
-      validity: new FormControl(1),
-      price: new FormControl(0)
-    })
   }
 
-  changeValue(value: any) {
+  changeValue(value:any) {
     this.storeSelected = value;
     let data = {
       store: this.storeSelected
     }
-    this.apiservice.listProduct(data)
+
+    this.apiservice.viewCustomerbyStore(this.storeSelected)
       .subscribe((data: any) => {
-        this.product = data?.product.filter((x: any) => x.milktype === 'a2milk');;
+        this.customer = data?.customer;
       })
   }
 
-  changeProduct(value: string) {
-    const product = this.product?.filter((x: any) => x._id === value);
-    this.productSelected = product[0];
-    this.setPrice();
+  changeCustomer(value: any) {
+    this.customerSelected = value;
+    let data = {
+      customer: this.customerSelected
+    }
+
+    this.apiservice.listSubscriptionorderbyCustomer(data)
+     .subscribe((data:any) => {
+       this.customerorders = data?.order;
+     })
   }
 
-  setPrice() {
-    const validity = this.addMilkcard?.value?.validity;
-    this.addMilkcard.patchValue({
-      price: this.productSelected?.price * (validity > 30 ? validity - 1 : validity)
-    })
-  }
-
-  onSubmit(value) {
-    if (this.addMilkcard.status === 'INVALID') {
+  onSubmit(value: any) {
+    if (this.deliveryAvailablity.status === 'INVALID') {
       this.toastr.error('Enter valid data');
     }
     else {
 
-      this.apiservice.createMilkcard(value)
+      this.apiservice.createDeliveryavailablity(value)
         .subscribe((data: any) => {
           if (data.success) {
             this.toastr.success(data.message);
-            this.router.navigateByUrl('/view-milkcard');
+            this.oncancel();
           }
           else {
             this.toastr.error(data.message);

@@ -33,10 +33,18 @@ import { AddMilkcardComponent } from './add-milkcard/add-milkcard.component';
 import { ViewMilkcardComponent } from './view-milkcard/view-milkcard.component';
 import { OrdersbypaymethodComponent } from './ordersbypaymethod/ordersbypaymethod.component';
 import { CustomersComponent } from './customers/customers.component';
-import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { TodaysStockComponent } from './todays-stock/todays-stock.component';
 import { MilkcardHistoryComponent } from './milkcard-history/milkcard-history.component';
 import { TokenHistoryComponent } from './token-history/token-history.component';
+import { AddSubscriptionpackComponent } from './add-subscriptionpack/add-subscriptionpack.component';
+import { ViewSubscriptionpackComponent } from './view-subscriptionpack/view-subscriptionpack.component';
+import { ViewSubscriptionorderComponent } from './view-subscriptionorder/view-subscriptionorder.component';
+import { AddSubscriptionorderComponent } from './add-subscriptionorder/add-subscriptionorder.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { AddDeliveryuserComponent } from './add-deliveryuser/add-deliveryuser.component';
+import { ViewDeliveryuserComponent } from './view-deliveryuser/view-deliveryuser.component';
+import { ViewCustomerComponent } from "./view-customer/view-customer.component";
+import { DeliveryavailablityComponent } from './deliveryavailablity/deliveryavailablity.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -65,9 +73,17 @@ const routes: Routes = [
     { path: 'past-sales', component: PastUsersalesComponent, canActivate: [AuthGuard] },
     { path: 'past-sessions', component: PastSessionsComponent, canActivate: [AuthGuard] },
     { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
+    { path: 'add-customer', component: AddCustomerComponent, canActivate: [AuthGuard] },
     { path: 'view-customer', component: ViewCustomerComponent, canActivate: [AuthGuard] },
     { path: 'milkcard-history', component: MilkcardHistoryComponent, canActivate: [AuthGuard] },
     { path: 'token-history', component: TokenHistoryComponent, canActivate: [AuthGuard] },
+    { path: 'add-subscriptionpack', component: AddSubscriptionpackComponent, canActivate: [AuthGuard] },
+    { path: 'view-subscriptionpack', component: ViewSubscriptionpackComponent, canActivate: [AuthGuard] },
+    { path: 'add-deliveryman', component: AddDeliveryuserComponent, canActivate: [AuthGuard] },
+    { path: 'view-deliveryman', component: ViewDeliveryuserComponent, canActivate: [AuthGuard] },
+    { path: 'add-activesubscription', component: AddSubscriptionorderComponent, canActivate: [AuthGuard] },
+    { path: 'view-activesubscription', component: ViewSubscriptionorderComponent, canActivate: [AuthGuard] },
+    { path: 'add-availablity', component: DeliveryavailablityComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -84,6 +100,7 @@ const routes: Routes = [
         SharedModule,
     ],
     declarations: [
+        ViewCustomerComponent,
         OrderDetailComponent,
         OrdersComponent,
         CostComponent,
@@ -108,10 +125,17 @@ const routes: Routes = [
         ViewMilkcardComponent,
         OrdersbypaymethodComponent,
         CustomersComponent,
-        ViewCustomerComponent,
         TodaysStockComponent,
         MilkcardHistoryComponent,
-        TokenHistoryComponent
+        TokenHistoryComponent,
+        AddSubscriptionpackComponent,
+        ViewSubscriptionpackComponent,
+        ViewSubscriptionorderComponent,
+        AddSubscriptionorderComponent,
+        AddCustomerComponent,
+        AddDeliveryuserComponent,
+        ViewDeliveryuserComponent,
+        DeliveryavailablityComponent
     ],
     providers: [
         AuthGuard

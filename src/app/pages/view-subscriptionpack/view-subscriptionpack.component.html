@@ -1,0 +1,53 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-12 heading">
+            <h2><b>Subscription Pack</b></h2>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <table mdbTable class="table table-reponsive table-striped">
+                        <thead>
+                            <tr class="vertical">
+                                <th style="vertical-align: inherit;" scope="col">
+                                    S.no
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Name
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Price
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Validity
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Product
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="vertical"
+                                *ngFor="let i = index; let data of subscriptionpack | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td data-label="S.no">{{i+1}}</td>
+                                <td data-label="Name">{{data?.name}}</td>
+                                <td data-label="Price">{{data?.price | currency : 'INR'}}</td>
+                                <td data-label="Validity">{{data?.validity}}</td>
+                                <td data-label="Product">
+                                    {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p=$event">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

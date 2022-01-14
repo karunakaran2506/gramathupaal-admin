@@ -5,15 +5,15 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api/api.service';
 
 @Component({
-  selector: 'app-add-milkcard',
-  templateUrl: './add-milkcard.component.html',
-  styleUrls: ['./add-milkcard.component.scss']
+  selector: 'app-add-subscriptionpack',
+  templateUrl: './add-subscriptionpack.component.html',
+  styleUrls: ['./add-subscriptionpack.component.scss']
 })
-export class AddMilkcardComponent implements OnInit {
+export class AddSubscriptionpackComponent implements OnInit {
 
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
 
-  addMilkcard: FormGroup;
+  addSubscriptionpack: FormGroup;
   storeSelected: string;
   productSelected: any;
   product: Array<any>;
@@ -33,7 +33,7 @@ export class AddMilkcardComponent implements OnInit {
         this.changeValue(this.storeSelected);
       })
 
-    this.addMilkcard = new FormGroup({
+    this.addSubscriptionpack = new FormGroup({
       store: new FormControl(''),
       product: new FormControl(''),
       name: new FormControl(''),
@@ -49,7 +49,7 @@ export class AddMilkcardComponent implements OnInit {
     }
     this.apiservice.listProduct(data)
       .subscribe((data: any) => {
-        this.product = data?.product.filter((x: any) => x.milktype === 'a2milk');;
+        this.product = data?.product.filter((x: any) => x.type === 'milk');;
       })
   }
 
@@ -60,23 +60,23 @@ export class AddMilkcardComponent implements OnInit {
   }
 
   setPrice() {
-    const validity = this.addMilkcard?.value?.validity;
-    this.addMilkcard.patchValue({
+    const validity = this.addSubscriptionpack?.value?.validity;
+    this.addSubscriptionpack.patchValue({
       price: this.productSelected?.price * (validity > 30 ? validity - 1 : validity)
     })
   }
 
   onSubmit(value) {
-    if (this.addMilkcard.status === 'INVALID') {
+    if (this.addSubscriptionpack.status === 'INVALID') {
       this.toastr.error('Enter valid data');
     }
     else {
 
-      this.apiservice.createMilkcard(value)
+      this.apiservice.createSubscriptionpack(value)
         .subscribe((data: any) => {
           if (data.success) {
             this.toastr.success(data.message);
-            this.router.navigateByUrl('/view-milkcard');
+            this.router.navigateByUrl('/view-subscriptionpack');
           }
           else {
             this.toastr.error(data.message);

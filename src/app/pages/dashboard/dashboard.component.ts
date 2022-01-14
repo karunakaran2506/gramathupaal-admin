@@ -38,6 +38,14 @@ export class DashboardComponent implements OnInit {
 
   async ngOnInit() {
 
+    await this.apiservice.dashboarDetails()
+      .subscribe((data: any) => {
+        this.info = data.data;
+        this.todaySales = this.info?.todaySales;
+        this.todayOrders = this.info?.todayOrders;
+        this.totalStores = this.info?.totalStores;
+      })
+
     await this.apiservice.overallTodayOrderDetails()
     .subscribe((response: any) => {
       const data = response?.data;
@@ -52,7 +60,7 @@ export class DashboardComponent implements OnInit {
       this.chartOptions = {
         series: [this.totalcash, this.totalcard, this.totalupi, this.totalcredit, this.totalfree, this.totalmilkcard, this.totaltoken],
         chart: {
-          width: 500,
+          width: 330,
           type: "pie"
         },
         labels: ["Cash", "Card", "UPI", "Credit", "Free", "Milkcard", "Token"],
@@ -71,14 +79,6 @@ export class DashboardComponent implements OnInit {
         ]
       };
     })
-
-    this.apiservice.dashboarDetails()
-      .subscribe((data: any) => {
-        this.info = data.data;
-        this.todaySales = this.info?.todaySales;
-        this.todayOrders = this.info?.todayOrders;
-        this.totalStores = this.info?.totalStores;
-      })
   }
 
   openPage(page:string){

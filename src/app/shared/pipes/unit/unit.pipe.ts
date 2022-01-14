@@ -15,6 +15,8 @@ export class UnitPipe implements PipeTransform {
         return 'g';
       case 'litre':
         return 'l';
+      case 'piece':
+        return 'piece';
 
       default:
         break;

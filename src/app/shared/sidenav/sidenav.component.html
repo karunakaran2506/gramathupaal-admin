@@ -18,8 +18,8 @@
                 style="padding-left: 0px;">
                 <mat-panel-title>
                     <mat-list-item [ngClass]="this.active=='category'? 'list-item2' : 'list-item1'">
-                        <mat-icon mat-list-icon>shopping_basket</mat-icon>
-                        <mat-label>Categories</mat-label>
+                        <mat-icon mat-list-icon>category</mat-icon>
+                        <mat-label>Category</mat-label>
                     </mat-list-item>
                 </mat-panel-title>
             </mat-expansion-panel-header>
@@ -99,7 +99,7 @@
                 style="padding-left: 0px;">
                 <mat-panel-title>
                     <mat-list-item [ngClass]="this.active=='saleshistory'? 'list-item2' : 'list-item1'">
-                        <mat-icon mat-list-icon>money</mat-icon>
+                        <mat-icon mat-list-icon>attach_money</mat-icon>
                         <mat-label>Sales History</mat-label>
                     </mat-list-item>
                 </mat-panel-title>
@@ -160,6 +160,52 @@
         </mat-expansion-panel>
 
         <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='subscriptionpack'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='subscriptionpack'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>subscriptions</mat-icon>
+                        <mat-label>Subscription</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/view-subscriptionpack' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-subscriptionpack');makeactive('view-subscriptionpack')" class="no-left-margin">
+                <mat-label>View Subscription</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-subscriptionpack' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-subscriptionpack');makeactive('add-subscriptionpack')" class="no-left-margin">
+                <mat-label>Add Subscription</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='activesubscription'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='activesubscription'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>subscriptions</mat-icon>
+                        <mat-label>Active Subscription</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/add-activesubscription' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-activesubscription');makeactive('add-activesubscription')"
+                class="no-left-margin">
+                <mat-label>Create Active Subscription</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-activesubscription' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-activesubscription');makeactive('view-activesubscription')"
+                class="no-left-margin">
+                <mat-label>View Active Subscription</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-availablity' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-availablity');makeactive('add-availablity')" class="no-left-margin">
+                <mat-label>Update Availablity</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
             <mat-expansion-panel-header [ngClass]="this.active=='users'? 'selected-panel' : 'normal-panel'"
                 style="padding-left: 0px;">
                 <mat-panel-title>
@@ -169,17 +215,29 @@
                     </mat-list-item>
                 </mat-panel-title>
             </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/add-customer' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-customer');makeactive('add-customer')" class="no-left-margin">
+                <mat-label>Add Customer</mat-label>
+            </mat-list-item>
             <mat-list-item [style.color]="this.activepage=='/customers' ? '#39813e' : 'inherit'"
                 (click)="openpage('/customers');makeactive('customers')" class="no-left-margin">
                 <mat-label>View Customers</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-user' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-user');makeactive('add-user')" class="no-left-margin">
+                <mat-label>Add Store-User</mat-label>
             </mat-list-item>
             <mat-list-item [style.color]="this.activepage=='/view-user' ? '#39813e' : 'inherit'"
                 (click)="openpage('/view-user');makeactive('view-user')" class="no-left-margin">
                 <mat-label>View Store-Users</mat-label>
             </mat-list-item>
-            <mat-list-item [style.color]="this.activepage=='/add-user' ? '#39813e' : 'inherit'"
-                (click)="openpage('/add-user');makeactive('add-user')" class="no-left-margin">
-                <mat-label>Add Store-User</mat-label>
+            <mat-list-item [style.color]="this.activepage=='/add-deliveryman' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-deliveryman');makeactive('add-deliveryman')" class="no-left-margin">
+                <mat-label>Add Delivery Man</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-deliveryman' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-deliveryman');makeactive('view-deliveryman')" class="no-left-margin">
+                <mat-label>View Delivery Man</mat-label>
             </mat-list-item>
         </mat-expansion-panel>
 
