@@ -193,7 +193,7 @@
                                     <td data-label="S.no">{{i+1}}</td>
                                     <td data-label="Product">{{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}</td>
                                     <td data-label="Quantity">{{data?.quantity}}</td>
-                                    <td data-label="Price">{{data?.quantity * data?.product?.price | currency : 'INR'}}
+                                    <td data-label="Price">{{data?.totalamount | currency : 'INR'}}
                                     </td>
                                     <td data-label="D & T">{{data?.entrydate | date : 'dd/MM/yy, h:mm a'}}</td>
                                 </tr>

@@ -55,9 +55,9 @@
                                 <td data-label="S.no">{{i+1}}</td>
                                 <td data-label="Type">{{data?.type === 'sales' ? 'Sales' : 'Expenses'}}</td>
                                 <td data-label="Date & Time">{{data?.entrydate | date : 'dd/MM/yy, h:mm a'}}</td>
+                                <td data-label="Amount">{{data?.amount | currency : 'INR'}}</td>
                                 <td data-label="Comment">{{data?.comment}}</td>
                                 <td data-label="User">{{data?.user?.name}}</td>
-                                <td data-label="Amount">{{data?.amount | currency : 'INR'}}</td>
                             </tr>
                             <tr *ngIf="this.totalincome">
                                 <td colspan="4"></td>

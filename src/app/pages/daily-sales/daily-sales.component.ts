@@ -109,9 +109,9 @@ export class DailySalesComponent implements OnInit {
               const productquantity = x?.product?.quantity;
               const quantity = x?.product?.unit === 'millilitre' ? (productquantity / 1000) : productquantity;
               x.quantity = (x.quantity / quantity);
-              totalSales = (x.quantity * x?.product?.price) + totalSales;
+              totalSales = (x.totalamount) + totalSales;
             } else {
-              totalSales = (x.quantity * x?.product?.price) + totalSales;
+              totalSales = (x.totalamount) + totalSales;
             }
           })
           this.totalSales = totalSales;

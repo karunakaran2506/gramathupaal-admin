@@ -16,7 +16,7 @@
                     </li>
                     <li class="list-group-item"><b>Payment Method</b> : {{this.orderdetail.paymentMethod | titlecase}}
                     </li>
-                    <li *ngIf="this.orderdetail?.ordercredit" class="list-group-item">Credit Reason :
+                    <li *ngIf="this.orderdetail?.ordercredit" class="list-group-item"><b>Credit Reason</b> :
                         {{this.orderdetail?.ordercredit?.reason}}</li>
                 </ul>
             </div>
