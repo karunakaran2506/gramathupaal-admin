@@ -113,6 +113,11 @@
                 (click)="openpage('/token-history');makeactive('token-history')" class="no-left-margin">
                 <mat-label>Token Sales</mat-label>
             </mat-list-item>
+
+            <mat-list-item [style.color]="this.activepage=='/subscription-history' ? '#39813e' : 'inherit'"
+                (click)="openpage('/subscription-history');makeactive('subscription-history')" class="no-left-margin">
+                <mat-label>Subsciption History</mat-label>
+            </mat-list-item>
         </mat-expansion-panel>
 
         <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
@@ -202,6 +207,26 @@
             <mat-list-item [style.color]="this.activepage=='/add-availablity' ? '#39813e' : 'inherit'"
                 (click)="openpage('/add-availablity');makeactive('add-availablity')" class="no-left-margin">
                 <mat-label>Update Availablity</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='leads'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='leads'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>transfer_within_a_station</mat-icon>
+                        <mat-label>Leads</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/add-lead' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-lead');makeactive('add-lead')" class="no-left-margin">
+                <mat-label>Add Lead</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-lead' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-lead');makeactive('view-lead')" class="no-left-margin">
+                <mat-label>View Leads</mat-label>
             </mat-list-item>
         </mat-expansion-panel>
 

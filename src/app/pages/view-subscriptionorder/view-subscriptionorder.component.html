@@ -37,6 +37,15 @@
                                 <th style="vertical-align: inherit;" scope="col">
                                     Delivery Man
                                 </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    No.of.days remaining
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Edit
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,6 +55,13 @@
                                 <td data-label="Customer">{{data?.customer?.name}}- {{data?.customer?.phone}}</td>
                                 <td data-label="Customer Address">{{data?.customeraddress?.addressline1}},{{data?.customeraddress?.addressline2}},{{data?.customeraddress?.area}}-{{data?.customeraddress?.pincode}}</td>
                                 <td data-label="Delivery Man">{{data?.deliveryman?.name}}-{{data?.deliveryman?.phone}}</td>
+                                <td data-label="Subscription Pack">{{data?.validity}}</td>
+                                <td data-label="Edit">
+                                    <button (click)="editOrder(data)" class="btn btn-primary">Edit</button>
+                                </td>
+                                <td data-label="Action">
+                                    <button (click)="deactivateOrder(data._id)" class="btn btn-danger">Deactivate</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

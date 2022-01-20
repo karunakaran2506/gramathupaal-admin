@@ -9,11 +9,16 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
 
   baseurl = environment.url + 'api/';
+  leadSelected: any;
   stockSelected: any;
+  packSelected:any;
   customerSelected: any;
+  deliveryuserSelected: any;
   orderselected: any;
   productSelected: any;
   userSelected: any;
+  subscriptionorderSelected: any;
+
   table: any;
   coupon: any;
   category: any;
@@ -344,6 +349,14 @@ export class ApiService {
     })
   }
 
+  editSubscriptionpack(data: any) {
+    return this.http.post(this.baseurl + 'editSubscriptionpack', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
   listSubscriptionpack() {
     return this.http.get(this.baseurl + 'listSubscriptionpack', {
       headers: {
@@ -360,8 +373,32 @@ export class ApiService {
     })
   }
 
-  listSubscriptionorderbyStore(data: any) {
-    return this.http.post(this.baseurl + 'listSubscriptionorderbyStore', data, {
+  editSubscriptionorder(data: any) {
+    return this.http.post(this.baseurl + 'editSubscriptionorder', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  deactivateSubscriptionorder(data: any) {
+    return this.http.post(this.baseurl + 'deactivateSubscriptionorder', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  listActiveSubscriptionorderbyStore(data: any) {
+    return this.http.post(this.baseurl + 'listActiveSubscriptionorderbyStore', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  listSubscriptionHistorybyStore(data: any) {
+    return this.http.post(this.baseurl + 'listSubscriptionHistorybyStore', data, {
       headers: {
         token: localStorage.getItem('token')
       }
@@ -370,6 +407,14 @@ export class ApiService {
 
   customerSignUp(data: any) {
     return this.http.post(this.baseurl + 'customerSignUp', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  editCustomer(data: any) {
+    return this.http.post(this.baseurl + 'editCustomer', data, {
       headers: {
         token: localStorage.getItem('token')
       }
@@ -386,6 +431,14 @@ export class ApiService {
 
   deliveryUserSignup(data: any) {
     return this.http.post(this.baseurl + 'deliveryUserSignup', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  editDeliveryUser(data: any) {
+    return this.http.post(this.baseurl + 'editDeliveryUser', data, {
       headers: {
         token: localStorage.getItem('token')
       }
@@ -410,6 +463,30 @@ export class ApiService {
 
   listSubscriptionorderbyCustomer(data: any) {
     return this.http.post(this.baseurl + 'listSubscriptionorderbyCustomer', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  addlead(data: any) {
+    return this.http.post(this.baseurl + 'createLead', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  editLead(data: any) {
+    return this.http.post(this.baseurl + 'editLead', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  listLeads(data: any) {
+    return this.http.post(this.baseurl + 'listLeads', data, {
       headers: {
         token: localStorage.getItem('token')
       }

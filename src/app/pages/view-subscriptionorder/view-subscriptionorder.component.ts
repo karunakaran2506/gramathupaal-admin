@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api/api.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-view-subscriptionorder',
@@ -9,7 +12,11 @@ import { ApiService } from 'src/app/service/api/api.service';
 })
 export class ViewSubscriptionorderComponent implements OnInit {
 
-  constructor(private apiservice: ApiService, private router : Router) { }
+  constructor(
+    private apiservice: ApiService,
+    private router: Router,
+    private toastr: ToastrService,
+    private dialog: MatDialog) { }
 
   p = 1;
   storeSelected: string;
@@ -26,15 +33,44 @@ export class ViewSubscriptionorderComponent implements OnInit {
       })
   }
 
-  changeValue(value:any) {
+  changeValue(value: any) {
     this.storeSelected = value;
     let data = {
       store: this.storeSelected
     }
-    this.apiservice.listSubscriptionorderbyStore(data)
+    this.apiservice.listActiveSubscriptionorderbyStore(data)
       .subscribe((data: any) => {
         this.order = data?.order;
       })
+  }
+
+  editOrder(value: any) {
+    this.apiservice.subscriptionorderSelected = value;
+    this.router.navigateByUrl('/edit-activesubscription');
+  }
+
+  deactivateOrder(subscriptionorder: string) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      closeOnNavigation: true,
+      width: '70%',
+      data: "Are you sure to deactivate the order?"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        let data = {
+          subscriptionorder
+        }
+        this.apiservice.deactivateSubscriptionorder(data)
+          .subscribe((data: any) => {
+            if (data?.success) {
+              this.toastr.success(data?.message);
+              this.ngOnInit();
+            } else {
+              this.toastr.error(data?.message);
+            }
+          })
+      }
+    });
   }
 
 }

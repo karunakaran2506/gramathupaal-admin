@@ -18,6 +18,8 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoryComponent } from './category/category.component';
 import { AddStockComponent } from './add-stock/add-stock.component';
 import { SharedModule } from "../shared/shared.module";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 import { DailySalesComponent } from './daily-sales/daily-sales.component';
 import { ViewStockComponent } from './view-stock/view-stock.component';
 import { StockHistoryComponent } from './stock-history/stock-history.component';
@@ -45,6 +47,14 @@ import { AddDeliveryuserComponent } from './add-deliveryuser/add-deliveryuser.co
 import { ViewDeliveryuserComponent } from './view-deliveryuser/view-deliveryuser.component';
 import { ViewCustomerComponent } from "./view-customer/view-customer.component";
 import { DeliveryavailablityComponent } from './deliveryavailablity/deliveryavailablity.component';
+import { AddLeadComponent } from './add-lead/add-lead.component';
+import { ViewLeadComponent } from './view-lead/view-lead.component';
+import { EditLeadComponent } from './edit-lead/edit-lead.component';
+import { SubscriptionHistoryComponent } from './subscription-history/subscription-history.component';
+import { EditSubscriptionpackComponent } from './edit-subscriptionpack/edit-subscriptionpack.component';
+import { EditSubscriptionorderComponent } from './edit-subscriptionorder/edit-subscriptionorder.component';
+import { EditDeliveryuserComponent } from './edit-deliveryuser/edit-deliveryuser.component';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -74,20 +84,29 @@ const routes: Routes = [
     { path: 'past-sessions', component: PastSessionsComponent, canActivate: [AuthGuard] },
     { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
     { path: 'add-customer', component: AddCustomerComponent, canActivate: [AuthGuard] },
+    { path: 'edit-customer', component: EditCustomerComponent, canActivate: [AuthGuard] },
     { path: 'view-customer', component: ViewCustomerComponent, canActivate: [AuthGuard] },
     { path: 'milkcard-history', component: MilkcardHistoryComponent, canActivate: [AuthGuard] },
     { path: 'token-history', component: TokenHistoryComponent, canActivate: [AuthGuard] },
+    { path: 'subscription-history', component: SubscriptionHistoryComponent, canActivate: [AuthGuard] },
     { path: 'add-subscriptionpack', component: AddSubscriptionpackComponent, canActivate: [AuthGuard] },
+    { path: 'edit-subscriptionpack', component: EditSubscriptionpackComponent, canActivate: [AuthGuard] },
     { path: 'view-subscriptionpack', component: ViewSubscriptionpackComponent, canActivate: [AuthGuard] },
     { path: 'add-deliveryman', component: AddDeliveryuserComponent, canActivate: [AuthGuard] },
     { path: 'view-deliveryman', component: ViewDeliveryuserComponent, canActivate: [AuthGuard] },
+    { path: 'edit-deliveryman', component: EditDeliveryuserComponent, canActivate: [AuthGuard] },
     { path: 'add-activesubscription', component: AddSubscriptionorderComponent, canActivate: [AuthGuard] },
+    { path: 'edit-activesubscription', component: EditSubscriptionorderComponent, canActivate: [AuthGuard] },
     { path: 'view-activesubscription', component: ViewSubscriptionorderComponent, canActivate: [AuthGuard] },
     { path: 'add-availablity', component: DeliveryavailablityComponent, canActivate: [AuthGuard] },
+    { path: 'add-lead', component: AddLeadComponent, canActivate: [AuthGuard] },
+    { path: 'edit-lead', component: EditLeadComponent, canActivate: [AuthGuard] },
+    { path: 'view-lead', component: ViewLeadComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
     imports: [
+        Ng2SearchPipeModule,
         RouterModule.forChild(routes),
         CommonModule,
         MaterialModule,
@@ -135,7 +154,15 @@ const routes: Routes = [
         AddCustomerComponent,
         AddDeliveryuserComponent,
         ViewDeliveryuserComponent,
-        DeliveryavailablityComponent
+        DeliveryavailablityComponent,
+        AddLeadComponent,
+        ViewLeadComponent,
+        EditLeadComponent,
+        SubscriptionHistoryComponent,
+        EditSubscriptionpackComponent,
+        EditSubscriptionorderComponent,
+        EditDeliveryuserComponent,
+        EditCustomerComponent
     ],
     providers: [
         AuthGuard

@@ -9,9 +9,10 @@ import { ApiService } from 'src/app/service/api/api.service';
 })
 export class CustomersComponent implements OnInit {
 
-  constructor(private apiservice: ApiService, private router : Router) { }
+  constructor(private apiservice: ApiService, private router: Router) { }
 
   p = 1;
+  term : any;
   storeSelected: string;
   stores: Array<any> = [];
   customer: Array<any> = [];
@@ -31,7 +32,7 @@ export class CustomersComponent implements OnInit {
     this.router.navigateByUrl('/view-customer');
   }
 
-  changeValue(value:any) {
+  changeValue(value: any) {
     this.storeSelected = value;
     let data = {
       store: this.storeSelected
@@ -40,6 +41,11 @@ export class CustomersComponent implements OnInit {
       .subscribe((data: any) => {
         this.customer = data?.customer;
       })
+  }
+
+  editCustomer(data: any) {
+    this.apiservice.customerSelected = data;
+    this.router.navigateByUrl('/edit-customer');
   }
 
 }

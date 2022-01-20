@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form [formGroup]="addCustomerForm" (ngSubmit)="onSubmit(addCustomerForm.value)">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <label class="form-label">
                                     <h3><b>Choose Store</b></h3>
                                 </label>
@@ -20,19 +20,26 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <label for="name" class="form-label">
                                     <h3><b>Name</b></h3>
                                 </label>
                                 <input formControlName="name" type="text" id="name" class="form-control"
                                     placeholder="Enter Name">
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <label for="phone" class="form-label">
                                     <h3><b>Phone</b></h3>
                                 </label>
                                 <input formControlName="phone" type="number" minlength="10" maxlength="10" min="1"
                                     id="phone" class="form-control" placeholder="Enter phone">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="nickname" class="form-label">
+                                    <h3><b>Nickname</b></h3>
+                                </label>
+                                <input formControlName="nickname" type="text" id="nickname" class="form-control"
+                                    placeholder="Enter nickname">
                             </div>
                         </div>
                         <br>

@@ -37,6 +37,9 @@
                                 <th style="vertical-align: inherit;" scope="col">
                                     Adhar Number
                                 </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,6 +49,9 @@
                                 <td data-label="Phone">{{data?.phone}}</td>
                                 <td data-label="Email">{{data?.email}}</td>
                                 <td data-label="Adhar Number">{{data?.adhar}}</td>
+                                <td data-label="Action">
+                                    <button class="btn btn-primary" (click)="editUser(data)">Edit</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

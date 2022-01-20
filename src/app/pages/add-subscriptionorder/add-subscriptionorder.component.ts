@@ -89,6 +89,7 @@ export class AddSubscriptionorderComponent implements OnInit {
       let payload = {
         subscriptionpack : subscriptionpack[0],
         validity : subscriptionpack[1],
+        price : subscriptionpack[2],
         store : value?.store,
         customer : value?.customer,
         customeraddress : value?.customeraddress,

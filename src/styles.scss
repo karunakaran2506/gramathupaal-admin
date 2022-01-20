@@ -4,6 +4,13 @@ body {
 	overflow: hidden
 }
 
+.mar-r8{
+    text-align: end;
+    @media only screen and (max-width: 600px) {
+        text-align: inherit;
+    }
+}
+
 .pad-5 {
 	padding: 5% 5%;
 }

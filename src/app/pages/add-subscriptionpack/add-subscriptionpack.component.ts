@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api/api.service';
@@ -34,9 +34,9 @@ export class AddSubscriptionpackComponent implements OnInit {
       })
 
     this.addSubscriptionpack = new FormGroup({
-      store: new FormControl(''),
-      product: new FormControl(''),
-      name: new FormControl(''),
+      store: new FormControl('', Validators.required),
+      product: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
       validity: new FormControl(1),
       price: new FormControl(0)
     })

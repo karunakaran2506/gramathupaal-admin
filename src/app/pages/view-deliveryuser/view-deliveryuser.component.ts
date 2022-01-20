@@ -37,4 +37,9 @@ export class ViewDeliveryuserComponent implements OnInit {
       })
   }
 
+  editUser(value:any){
+    this.apiservice.deliveryuserSelected = value;
+    this.router.navigateByUrl('/edit-deliveryman');
+  }
+
 }

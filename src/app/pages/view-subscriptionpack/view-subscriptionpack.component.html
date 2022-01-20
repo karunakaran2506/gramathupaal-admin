@@ -29,6 +29,9 @@
                                 <th style="vertical-align: inherit;" scope="col">
                                     Product
                                 </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,6 +43,9 @@
                                 <td data-label="Validity">{{data?.validity}}</td>
                                 <td data-label="Product">
                                     {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
+                                </td>
+                                <td data-label="Action">
+                                    <button (click)="editPack(data)" class="btn btn-primary">Edit</button>
                                 </td>
                             </tr>
                         </tbody>

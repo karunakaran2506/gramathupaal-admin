@@ -15,10 +15,8 @@ export class AddCustomerComponent implements OnInit {
 
   addCustomerForm: FormGroup;
   storeSelected: any;
-  files: any;
   store = [];
   customeraddressForms: FormArray;
-  imageSrc: any;
 
   constructor(
     private apiservice: ApiService,
@@ -31,6 +29,7 @@ export class AddCustomerComponent implements OnInit {
 
     this.addCustomerForm = this.formBuilder.group({
       name: ['', Validators.required],
+      nickname: [''],
       phone: ['', Validators.required],
       store: ['', Validators.required],
       customeraddress: this.formBuilder.array([]),
@@ -72,6 +71,7 @@ export class AddCustomerComponent implements OnInit {
 
       let payload = {
         name: value.name,
+        nickname: value.nickname,
         phone: value.phone,
         store: value.store,
         customeraddress: JSON.stringify(value.customeraddress),

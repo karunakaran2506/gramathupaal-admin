@@ -28,7 +28,7 @@
                                     <h3><b>Choose Subscription Pack</b></h3>
                                 </label>
                                 <select formControlName="subscriptionpack" class="form-control">
-                                    <option *ngFor="let data of subscriptionpack" value="{{data?._id}},{{data?.validity}}">{{data.name}}
+                                    <option *ngFor="let data of subscriptionpack" value="{{data?._id}},{{data?.validity}},{{data?.price}}">{{data.name}}
                                     </option>
                                 </select>
                             </div>
