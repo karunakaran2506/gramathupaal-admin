@@ -493,4 +493,28 @@ export class ApiService {
     })
   }
 
+  milkSupplyEntry(data: any) {
+    return this.http.post(this.baseurl + 'milkSupplyEntry', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  listTodayMilkSupplies(data: any) {
+    return this.http.post(this.baseurl + 'listTodayMilkSupplies', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  listDeliveryEntries() {
+    return this.http.get(this.baseurl + 'listDeliveryEntries', {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
 }

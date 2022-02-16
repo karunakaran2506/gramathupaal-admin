@@ -19,6 +19,7 @@ export class ViewSubscriptionorderComponent implements OnInit {
     private dialog: MatDialog) { }
 
   p = 1;
+  term : any;
   storeSelected: string;
   stores: Array<any> = [];
   order: Array<any> = [];

@@ -1,0 +1,94 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-4 heading">
+            <h2><b>Today's Milksupply</b></h2>
+        </div>
+        <div class="col-lg-8 heading mar-r8">
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose Store</mat-label>
+                <mat-select (selectionChange)="storeChange($event.value)" [(ngModel)]="storeSelected">
+                    <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-3 pad-top-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total A1 Milk Supplied</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totala1milksupplied | number : '1.2-2'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total A2 Milk Supplied</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totala2milksupplied | number : '1.2-2'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Buffalo Milk Supplied</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalbuffalomilksupplied | number : '1.2-2'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <table mdbTable class="table table-reponsive table-striped">
+                        <thead>
+                            <tr class="vertical">
+                                <th style="vertical-align: inherit;" scope="col">
+                                    S.no
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Delivery Man
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Product
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Quantity
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Date & Time
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="vertical"
+                                *ngFor="let i = index; let data of entries | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td data-label="S.no">{{i+1}}</td>
+                                <td data-label="Delivery Man">{{data?.deliveryman?.name}}</td>
+                                <td data-label="Product">{{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&{{data?.product?.unit | unit}}</td>
+                                <td data-label="Quantity">{{data?.quantity}}</td>
+                                <td data-label="Date & Time">{{data.entrydate | date : 'dd/MM/yy, h:mm a'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p=$event">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

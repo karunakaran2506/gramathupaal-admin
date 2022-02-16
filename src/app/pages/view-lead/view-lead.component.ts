@@ -13,6 +13,7 @@ export class ViewLeadComponent implements OnInit {
   leads: Array<any>;
   stores: Array<any>;
   p = 1;
+  term: any;
 
   constructor(
     private apiservice: ApiService,

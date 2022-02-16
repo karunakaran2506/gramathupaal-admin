@@ -145,6 +145,26 @@
         </mat-expansion-panel>
 
         <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='milksupply'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='milksupply'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>local_drink</mat-icon>
+                        <mat-label>Milk Supply</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/today-milksupply' ? '#39813e' : 'inherit'"
+                (click)="openpage('/today-milksupply');makeactive('today-milksupply')" class="no-left-margin">
+                <mat-label>Today's Milksupply</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/entry-milksupply' ? '#39813e' : 'inherit'"
+                (click)="openpage('/entry-milksupply');makeactive('entry-milksupply')" class="no-left-margin">
+                <mat-label>Milksupply Entry</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
             <mat-expansion-panel-header [ngClass]="this.active=='milkcard'? 'selected-panel' : 'normal-panel'"
                 style="padding-left: 0px;">
                 <mat-panel-title>

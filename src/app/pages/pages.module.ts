@@ -55,6 +55,8 @@ import { EditSubscriptionpackComponent } from './edit-subscriptionpack/edit-subs
 import { EditSubscriptionorderComponent } from './edit-subscriptionorder/edit-subscriptionorder.component';
 import { EditDeliveryuserComponent } from './edit-deliveryuser/edit-deliveryuser.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
+import { AddMilksupplyComponent } from './add-milksupply/add-milksupply.component';
+import { ViewMilksupplyComponent } from './view-milksupply/view-milksupply.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -102,6 +104,8 @@ const routes: Routes = [
     { path: 'add-lead', component: AddLeadComponent, canActivate: [AuthGuard] },
     { path: 'edit-lead', component: EditLeadComponent, canActivate: [AuthGuard] },
     { path: 'view-lead', component: ViewLeadComponent, canActivate: [AuthGuard] },
+    { path: 'entry-milksupply', component: AddMilksupplyComponent, canActivate: [AuthGuard] },
+    { path: 'today-milksupply', component: ViewMilksupplyComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -162,7 +166,9 @@ const routes: Routes = [
         EditSubscriptionpackComponent,
         EditSubscriptionorderComponent,
         EditDeliveryuserComponent,
-        EditCustomerComponent
+        EditCustomerComponent,
+        AddMilksupplyComponent,
+        ViewMilksupplyComponent
     ],
     providers: [
         AuthGuard
