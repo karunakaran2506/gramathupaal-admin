@@ -35,6 +35,7 @@ export class EditProductComponent implements OnInit {
 
     this.editProduct = new FormGroup({
       name: new FormControl(this.product?.name, Validators.required),
+      milktype: new FormControl(this.product?.milktype),
       type: new FormControl(this.product?.type, Validators.required),
       price: new FormControl(this.product?.price, Validators.required),
       category: new FormControl(this.product?.category?._id, Validators.required),
@@ -110,6 +111,7 @@ export class EditProductComponent implements OnInit {
       formData.append("quantity", value.quantity);
       formData.append("unit", value.unit);
       formData.append("product", value.product);
+      formData.append("milktype", value.milktype);
 
       if (this.files?.length) {
         this.apiservice.editProduct(formData)

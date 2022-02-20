@@ -11,7 +11,8 @@ export class ApiService {
   baseurl = environment.url + 'api/';
   leadSelected: any;
   stockSelected: any;
-  packSelected:any;
+  packSelected: any;
+  cowSelected: any;
   customerSelected: any;
   deliveryuserSelected: any;
   orderselected: any;
@@ -511,6 +512,54 @@ export class ApiService {
 
   listDeliveryEntries() {
     return this.http.get(this.baseurl + 'listDeliveryEntries', {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  addCow(data: any) {
+    return this.http.post(this.baseurl + 'addCow', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  editCow(data: any) {
+    return this.http.post(this.baseurl + 'editCow', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  listCow() {
+    return this.http.get(this.baseurl + 'listCow', {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  addVaccination(data: any) {
+    return this.http.post(this.baseurl + 'addVaccination', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  addCowWeight(data: any) {
+    return this.http.post(this.baseurl + 'addCowWeight', data, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+  }
+
+  addCowMilk(data: any) {
+    return this.http.post(this.baseurl + 'addCowMilk', data, {
       headers: {
         token: localStorage.getItem('token')
       }

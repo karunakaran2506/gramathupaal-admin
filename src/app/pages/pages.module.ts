@@ -57,6 +57,16 @@ import { EditDeliveryuserComponent } from './edit-deliveryuser/edit-deliveryuser
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { AddMilksupplyComponent } from './add-milksupply/add-milksupply.component';
 import { ViewMilksupplyComponent } from './view-milksupply/view-milksupply.component';
+import { AddCowComponent } from './add-cow/add-cow.component';
+import { ViewCowComponent } from './view-cow/view-cow.component';
+import { ViewCowdetailComponent } from './view-cowdetail/view-cowdetail.component';
+import { ViewVaccinationsComponent } from './view-vaccinations/view-vaccinations.component';
+import { ViewCowweightComponent } from './view-cowweight/view-cowweight.component';
+import { ViewCowmilkentryComponent } from './view-cowmilkentry/view-cowmilkentry.component';
+import { AddVaccinationComponent } from './add-vaccination/add-vaccination.component';
+import { AddCowweightComponent } from './add-cowweight/add-cowweight.component';
+import { AddCowmilkentryComponent } from './add-cowmilkentry/add-cowmilkentry.component';
+import { EditCowComponent } from './edit-cow/edit-cow.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -66,6 +76,9 @@ const routes: Routes = [
     { path: 'add-milkcard', component: AddMilkcardComponent, canActivate: [AuthGuard] },
     { path: 'view-milkcard', component: ViewMilkcardComponent, canActivate: [AuthGuard] },
     { path: 'add-cost', component: AddCostComponent, canActivate: [AuthGuard] },
+    { path: 'add-cow', component: AddCowComponent, canActivate: [AuthGuard] },
+    { path: 'edit-cow', component: EditCowComponent, canActivate: [AuthGuard] },
+    { path: 'view-cow', component: ViewCowComponent, canActivate: [AuthGuard] },
     { path: 'product', component: ProductsComponent, canActivate: [AuthGuard] },
     { path: 'add-product', component: AddProductComponent, canActivate: [AuthGuard] },
     { path: 'edit-product', component: EditProductComponent, canActivate: [AuthGuard] },
@@ -168,7 +181,17 @@ const routes: Routes = [
         EditDeliveryuserComponent,
         EditCustomerComponent,
         AddMilksupplyComponent,
-        ViewMilksupplyComponent
+        ViewMilksupplyComponent,
+        AddCowComponent,
+        ViewCowComponent,
+        ViewCowdetailComponent,
+        ViewVaccinationsComponent,
+        ViewCowweightComponent,
+        ViewCowmilkentryComponent,
+        AddVaccinationComponent,
+        AddCowweightComponent,
+        AddCowmilkentryComponent,
+        EditCowComponent
     ],
     providers: [
         AuthGuard

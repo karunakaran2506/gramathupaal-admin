@@ -44,6 +44,16 @@
                                     <option value="others">Others</option>
                                 </select>
                             </div>
+                            <div *ngIf="this.editProduct.get('type')['value'] === 'milk'" class="col-lg-3">
+                                <label class="form-label">
+                                    <h3><b>Choose Milk Type</b></h3>
+                                </label>
+                                <select formControlName="milktype" class="form-control">
+                                    <option value="a1milk">A1 Milk</option>
+                                    <option value="a2milk">A2 Milk</option>
+                                    <option value="buffalomilk">Buffalo Milk</option>
+                                </select>
+                            </div>
                             <div class="col-lg-3">
                                 <label class="form-label">
                                     <h3><b>Choose Store</b></h3>

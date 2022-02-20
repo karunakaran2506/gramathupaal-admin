@@ -35,10 +35,11 @@ export class AddProductComponent implements OnInit {
     this.addProduct = new FormGroup({
       name: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
-      price: new FormControl('', Validators.required),
+      milktype: new FormControl(''),
+      price: new FormControl(1, Validators.required),
       category: new FormControl('', Validators.required),
       store: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required),
+      quantity: new FormControl(1, Validators.required),
       unit: new FormControl('', Validators.required),
       file: new FormControl('', Validators.required),
       fileource: new FormControl('')
@@ -103,6 +104,7 @@ export class AddProductComponent implements OnInit {
       formData.append("store", value.store);
       formData.append("quantity", value.quantity);
       formData.append("unit", value.unit);
+      formData.append("milktype", value.milktype);
 
       this.apiservice.addProduct(formData)
         .subscribe((data: any) => {

@@ -1,0 +1,73 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-12 heading">
+            <h2><b>Cow</b></h2>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <div class="row" *ngIf="this.cows?.length;">
+                        <div class="col-lg-6" *ngFor="let cow of cows">
+                            <mat-card class="mat-card">
+                                <mat-card-content>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h2>{{cow?.name}}</h2>
+                                            <h3>{{cow?.tagnumber}}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row align-middle">
+                                        <div class="col-lg-4">
+                                            <h2>Vaccinations :</h2>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button style="width: 100%;" (click)="viewVaccination(cow)" class="btn btn-info btn1">View</button>                                           
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button style="width: 100%;" (click)="addVaccination(cow)" class="btn btn-success btn1">Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="row align-middle">
+                                        <div class="col-lg-4">
+                                            <h2>Cow Weight :</h2>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button style="width: 100%;" (click)="viewCowWeight(cow)" class="btn btn-info btn1">View</button>                                           
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button style="width: 100%;" (click)="addCowWeight(cow)" class="btn btn-success btn1">Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="row align-middle">
+                                        <div class="col-lg-4">
+                                            <h2>Cow Milk Entries :</h2>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button style="width: 100%;" (click)="viewCowMilkEntries(cow)" class="btn btn-info btn1">View</button>                                           
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button style="width: 100%;" (click)="addCowMilkEntry(cow)" class="btn btn-success btn1">Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="row align-middle">
+                                        <div class="col-lg-6">
+                                            <button style="width: 100%;" (click)="editCow(cow)" class="btn btn-warning btn1">Edit</button>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <button style="width: 100%;" (click)="viewCowDetail(cow)" class="btn btn-secondary btn1">View Cow info</button>
+                                        </div>
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -54,6 +54,26 @@
         </mat-expansion-panel>
 
         <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='cow'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='cow'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>pets</mat-icon>
+                        <mat-label>Cow</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/view-cow' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-cow');makeactive('view-cow')" class="no-left-margin">
+                <mat-label>View Cow</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-cow' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-cow');makeactive('add-cow')" class="no-left-margin">
+                <mat-label>Add Cow</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
             <mat-expansion-panel-header [ngClass]="this.active=='accounts'? 'selected-panel' : 'normal-panel'"
                 style="padding-left: 0px;">
                 <mat-panel-title>

@@ -1,0 +1,57 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title>Cow Information</h2>
+<mat-dialog-content>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Name</b> : {{this.cow?.name || '-'}}</li>
+                    <li class="list-group-item"><b>Gender</b> : {{this.cow?.gender || '-'}}</li>
+                    <li class="list-group-item"><b>Type</b> : {{this.cow?.type || '-'}}</li>
+                    <li class="list-group-item"><b>Cow Number</b> : {{this.cow?.tagnumber || '-'}}</li>
+                    <li class="list-group-item"><b>Mother Cow Name</b> : {{this.cow?.mothercowname || '-'}}</li>
+                    <li class="list-group-item"><b>Mother Cow Number</b> : {{this.cow?.mothercownumber || '-'}}</li>
+                    <li class="list-group-item"><b>Father Cow Name</b> : {{this.cow?.fathercowname || '-'}}</li>
+                    <li class="list-group-item"><b>Father Cow Number</b> : {{this.cow?.fathercownumber || '-'}}</li>
+                    <li class="list-group-item"><b>Date of Birth</b> : {{this.cow?.dateofbirth | date : 'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Time of Birth</b> : {{this.cow?.timeofbirth || '-'}}</li>
+                    <li class="list-group-item"><b>Birth Weight</b> : {{this.cow?.birthweight || '-'}}</li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Date of Warming</b> : {{this.cow?.dateofdewarming | date : 'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Date of First Feed</b> : {{this.cow?.dateoffirstfeedtaken | date :
+                        'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Date of Milk Stop</b> : {{this.cow?.dateofmilkstop | date :
+                        'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Date of First Heat</b> : {{this.cow?.dateoffirstheat | date :
+                        'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Date of Insemination</b> : {{this.cow?.dateofinsemination | date :
+                        'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Colustrum Milk Weight</b> : {{this.cow?.colostrummilkweight || '-'}}
+                    </li>
+                    <li class="list-group-item"><b>Date of Normal Milk</b> : {{this.cow?.dateofnormalmilk | date :
+                        'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Date of First Heat After Calving</b> :
+                        {{this.cow?.dateoffirstheataftercalving | date : 'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Date of Artificial Insemination</b> :
+                        {{this.cow?.dateofartificialinsemination | date : 'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Date of Pregnancy Confirmation</b> :
+                        {{this.cow?.dateofpregnancyconfirmation | date : 'longDate' || '-'}}</li>
+                    <li class="list-group-item"><b>Date of Calving</b> : {{this.cow?.dateofcalving | date : 'longDate' || '-'}}</li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <h3><b>Treatments</b></h3>
+                <ul class="list-group">
+                    <li *ngIf="this.cow?.stomachcleaning" class="list-group-item">Stomach Cleaning</li>
+                    <li *ngIf="this.cow?.calciumintake" class="list-group-item">Calcium Intake</li>
+                    <li *ngIf="this.cow?.brownsugar" class="list-group-item">Brown Sugar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
