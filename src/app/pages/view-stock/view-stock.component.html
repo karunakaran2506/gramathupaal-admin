@@ -54,7 +54,7 @@
                                 <td data-label="Product">
                                     {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
                                 </td>
-                                <td data-label="Remaining Stock">{{data?.totalStockIn - data?.totalStockOut}}</td>
+                                <td data-label="Remaining Stock">{{data?.totalStockIn - (data?.totalStockOut + data?.totalByproduct)}}</td>
                                 <td data-label="View">
                                     <button (click)="viewStockHistory(data)" class="btn btn-primary btn2">View</button>
                                 </td>
@@ -134,7 +134,7 @@
                                     <td data-label="Product">
                                         {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
                                     </td>
-                                    <td data-label="Remaining Stock">{{data?.totalStockIn - data?.totalStockOut}}</td>
+                                    <td data-label="Remaining Stock">{{data?.totalStockIn - (data?.totalStockOut + data?.totalByproduct)}}</td>
                                     <td data-label="View">
                                         <button (click)="viewStockHistory(data)" class="btn btn-primary btn2">View</button>
                                     </td>

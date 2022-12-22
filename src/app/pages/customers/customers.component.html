@@ -44,7 +44,7 @@
                                 <th style="vertical-align: inherit;" scope="col">
                                     View
                                 </th>
-                                <th style="vertical-align: inherit;" scope="col">
+                                <th colspan="2" style="vertical-align: inherit;" scope="col">
                                     Action
                                 </th>
                             </tr>
@@ -59,8 +59,11 @@
                                 <td data-label="Edit">
                                     <button (click)="viewCustomer(data)" class="btn btn-primary">View</button>
                                 </td>
-                                <td data-label="Action">
+                                <td data-label="Edit">
                                     <button (click)="editCustomer(data)" class="btn btn-secondary">Edit</button>
+                                </td>
+                                <td data-label="Delete">
+                                    <button (click)="deleteCustomer(data?._id)" class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         </tbody>

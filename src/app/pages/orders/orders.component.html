@@ -6,14 +6,14 @@
         <div class="col-lg-8 heading mar-r8">
             <mat-form-field style="margin-right: 3%;" appearance="outline">
                 <mat-label>Choose Store</mat-label>
-                <mat-select (selectionChange)="changeValue($event.value)" [(ngModel)]="storeSelected">
+                <mat-select (selectionChange)="fetchData()" [(ngModel)]="storeSelected">
                     <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field style="margin-right: 3%;" appearance="outline">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" (dateChange)="datechange($event.value)"
+                <input matInput [matDatepicker]="picker" (dateChange)="fetchData()"
                     [(ngModel)]="dateSelected">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -21,7 +21,7 @@
 
             <mat-form-field style="margin-right: 3%;" appearance="outline">
                 <mat-label>Choose Type</mat-label>
-                <mat-select (selectionChange)="typeChange($event.value)" [(ngModel)]="viewType">
+                <mat-select (selectionChange)="fetchData()" [(ngModel)]="viewType">
                     <mat-option value="order">By Order</mat-option>
                     <mat-option value="product">By Product</mat-option>
                 </mat-select>
@@ -147,6 +147,9 @@
                                 <th style="vertical-align: inherit;" scope="col">
                                     View
                                 </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Delete
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,9 +165,12 @@
                                 <td data-label="View">
                                     <button class="btn btn-primary" (click)="openDialog(data)">View</button>
                                 </td>
+                                <td data-label="Action">
+                                    <button class="btn btn-danger" (click)="deleteOrder(data?._id)">Delete</button>
+                                </td>
                             </tr>
                             <tr *ngIf="this.orders?.length" class="vertical">
-                                <td colspan="4"><span class="bold">Total Sales :</span> </td>
+                                <td colspan="5"><span class="bold">Total Sales :</span> </td>
                                 <td><span class="bold">{{this.totalSales | currency : 'INR'}}</span></td>
                                 <td colspan="3"></td>
                             </tr>

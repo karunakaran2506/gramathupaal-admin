@@ -1,0 +1,80 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-4 heading">
+            <h2><b>View Feed Ledger Entries</b></h2>
+        </div>
+        <div class="col-lg-8 heading mar-r8">
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose Store</mat-label>
+                <mat-select (selectionChange)="fetchData()" [(ngModel)]="storeSelected">
+                    <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose date</mat-label>
+                <input matInput [matDatepicker]="picker" (dateChange)="fetchData()" [(ngModel)]="dateSelected">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <table mdbTable class="table table-reponsive table-striped">
+                        <thead>
+                            <tr class="vertical">
+                                <th style="vertical-align: inherit;" scope="col">
+                                    S.no
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Feed Name
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    No.of.Pack / Weight
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Total Amount
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Received Amount
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Balance Amount
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col" colspan="2">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="vertical"
+                                *ngFor="let data of ledgerEntries | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
+                                <td data-label="S.no">{{i+1}}</td>
+                                <td data-label="Feed Name">
+                                    {{data?.feed?.name}}
+                                </td>
+                                <td data-label="No.of.Pack / Weight">{{data?.quantity}}</td>
+                                <td data-label="Total Amount">{{data?.totalamount | currency : 'INR'}}</td>
+                                <td data-label="Received Amount">{{data?.receivedamount | currency : 'INR'}}</td>
+                                <td data-label="Balance Amount">{{data?.totalamount - data?.receivedamount | currency : 'INR'}}</td>
+                                <td data-label="Update">
+                                    <button class="btn btn-primary" (click)="updateBalance(data)">Update</button>
+                                </td>
+                                <td data-label="View Bill">
+                                    <a class="btn btn-secondary" target="_blank" download="{{data?.billimage | image}}" href="{{data?.billimage | image}}">View Bill</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p=$event">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

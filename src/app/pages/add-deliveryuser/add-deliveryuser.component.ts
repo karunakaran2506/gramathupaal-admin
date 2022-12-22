@@ -15,9 +15,7 @@ export class AddDeliveryuserComponent implements OnInit {
 
   addUserForm: FormGroup;
   storeSelected: any;
-  files: any;
   store = [];
-  imageSrc: any;
 
   constructor(
     private apiservice: ApiService,

@@ -21,8 +21,8 @@
                                 <label for="phone" class="form-label">
                                     <h3><b>Phone / Username</b></h3>
                                 </label>
-                                <input disabled formControlName="phone" type="number" minlength="10" maxlength="10" min="1" id="phone" class="form-control"
-                                    placeholder="Enter phone">
+                                <input disabled formControlName="phone" type="number" minlength="10" maxlength="10"
+                                    min="1" id="phone" class="form-control" placeholder="Enter phone">
                             </div>
                             <div class="col-lg-3">
                                 <label for="email" class="form-label">
@@ -36,7 +36,8 @@
                                     <h3><b>Image</b></h3>
                                     <!-- <img style="height: 10px;width: 10px;" [src]="this.imageSrc" /> -->
                                 </label>
-                                <input (change)="onFileChange($event)" formControlName="file" type="file" id="product-image" class="form-control">
+                                <input (change)="onFileChange($event)" formControlName="file" type="file"
+                                    id="product-image" class="form-control">
                             </div>
                         </div>
                         <br>
@@ -60,7 +61,7 @@
                                     <h3><b>Choose Store</b></h3>
                                 </label>
                                 <select [(ngModel)]="storeSelected" formControlName="store" class="form-control">
-                                    <option *ngFor="let data of store" value="{{data._id}}">
+                                    <option *ngFor="let data of store" [value]="data._id">
                                         {{data.name}}
                                     </option>
                                 </select>

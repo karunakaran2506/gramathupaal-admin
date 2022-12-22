@@ -43,7 +43,7 @@ export class AddVaccinationComponent implements OnInit {
         .subscribe((data: any) => {
           if (data.success) {
             this.successToast(data.message);
-            this.apiservice.listCow()
+            this.apiservice.listCow({store:this.apiservice?.cowSelected?.store})
               .subscribe((data: any) => {
                 this.commonservice.updateCowList(data?.cow)
               })

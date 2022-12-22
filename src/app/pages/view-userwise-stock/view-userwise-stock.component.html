@@ -1,0 +1,172 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-3 heading">
+            <h2><b>Stock Management</b></h2>
+        </div>
+        <div class="col-lg-9 heading mar-r8">
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose Store</mat-label>
+                <mat-select (selectionChange)="fetchData()" [(ngModel)]="storeSelected">
+                    <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose User</mat-label>
+                <mat-select (selectionChange)="fetchData()" [(ngModel)]="userSelected">
+                    <mat-option *ngFor="let data of users" [value]="data._id">{{data.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose Stocktype</mat-label>
+                <mat-select (selectionChange)="fetchData()" [(ngModel)]="stockType">
+                    <mat-option value="milk">Milk Stock</mat-option>
+                    <mat-option value="others">Other Stocks</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" (dateChange)="fetchData()" [(ngModel)]="dateSelected">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Start Time</mat-label>
+                <input matInput [ngxTimepicker]="startTime">
+                <mat-icon matSuffix>access_time</mat-icon>
+                <ngx-material-timepicker [defaultTime]="startTime" (timeSet)="timeChanged($event, 'start')" #startTime>
+                </ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>End Time</mat-label>
+                <input matInput [ngxTimepicker]="endTime">
+                <mat-icon matSuffix>access_time</mat-icon>
+                <ngx-material-timepicker [defaultTime]="endTime" (timeSet)="timeChanged($event, 'end')" #endTime>
+                </ngx-material-timepicker>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="this.stockType === 'others'" class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <table mdbTable class="table table-reponsive table-striped">
+                        <thead>
+                            <tr class="vertical">
+                                <th style="vertical-align: inherit;" scope="col">
+                                    S.no
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Product
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Stock Sold
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Remaining Stock
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of otherCategory">
+                            <tr class="vertical">
+                                <td colspan="4">
+                                    <h3 class="bold">{{item?.name}}</h3>
+                                </td>
+                            </tr>
+                            <tr class="vertical" *ngFor="let data of stockEntries | category : item._id | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
+                                <td data-label="S.no">{{i+1}}</td>
+                                <td data-label="Product">
+                                    {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
+                                </td>
+                                <td data-label="Stock Sold">{{data?.userStockOut}}</td>
+                                <td data-label="Remaining Stock">{{data?.remainingStock}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="this.stockType === 'milk'">
+    <div class="container-fluid" style="padding-bottom:1%">
+        <div class="row">
+            <div class="col-lg-12 heading">
+                <h2><b>Stock Sold</b></h2>
+            </div>
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Cow Milk (A1)</h2>
+                        <h1 class="card-text">
+                            <b>{{this.totala1milk?.soldOut | number: '1.2-2'}} litres</b>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Cow Milk (A2)</h2>
+                        <h1 class="card-text">
+                            <b>{{this.totala2milk?.soldOut | number: '1.2-2'}} litres</b>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 pad-top-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Buffalo Milk</h2>
+                        <h1 class="card-text">
+                            <b>{{this.totalbuffalomilk?.soldOut | number: '1.2-2'}} litres</b>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <table mdbTable class="table table-reponsive table-striped">
+                            <thead>
+                                <tr class="vertical">
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        S.no
+                                    </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        Product
+                                    </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        Stock Sold
+                                    </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        Remaining Stock
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let item of milkCategory">
+                                <tr class="vertical"
+                                    *ngFor="let data of stockEntries | category : item._id | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
+                                    <td data-label="S.no">{{i+1}}</td>
+                                    <td data-label="Product">
+                                        {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
+                                    </td>
+                                    <td data-label="Stock Sold">{{data?.userStockOut}}</td>
+                                    <td data-label="Remaining Stock">{{data?.remainingStock}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

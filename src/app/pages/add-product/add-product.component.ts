@@ -104,7 +104,7 @@ export class AddProductComponent implements OnInit {
       formData.append("store", value.store);
       formData.append("quantity", value.quantity);
       formData.append("unit", value.unit);
-      formData.append("milktype", value.milktype);
+      formData.append('milktype', value.type === 'milk' ? value.milktype : null);
 
       this.apiservice.addProduct(formData)
         .subscribe((data: any) => {

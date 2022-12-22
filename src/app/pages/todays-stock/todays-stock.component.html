@@ -17,6 +17,20 @@
                     <mat-option value="others">Other Stocks</mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Start Time</mat-label>
+                <input matInput [ngxTimepicker]="startTime" [value]="'12:00 AM'">
+                <mat-icon matSuffix>access_time</mat-icon>
+                <ngx-material-timepicker [defaultTime]="startTime" (timeSet)="timeChanged($event, 'start')" #startTime>
+                </ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>End Time</mat-label>
+                <input matInput [ngxTimepicker]="endTime" [value]="'11:59 PM'">
+                <mat-icon matSuffix>access_time</mat-icon>
+                <ngx-material-timepicker [defaultTime]="endTime" (timeSet)="timeChanged($event, 'end')" #endTime>
+                </ngx-material-timepicker>
+            </mat-form-field>
         </div>
     </div>
 </div>
@@ -49,7 +63,7 @@
                                     <h3 class="bold">{{item?.name}}</h3>
                                 </td>
                             </tr>
-                            <tr class="vertical" *ngFor="let data of stockEntries | category : item._id;let i=index">
+                            <tr class="vertical" *ngFor="let data of stockEntries | category : item._id | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
                                 <td data-label="S.no">{{i+1}}</td>
                                 <td data-label="Product">
                                     {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
@@ -59,6 +73,8 @@
                             </tr>
                         </tbody>
                     </table>
+                    <pagination-controls (pageChange)="p=$event">
+                    </pagination-controls>
                 </div>
             </div>
         </div>
@@ -202,7 +218,7 @@
                             </thead>
                             <tbody *ngFor="let item of milkCategory">
                                 <tr class="vertical"
-                                    *ngFor="let data of stockEntries | category : item._id;let i=index">
+                                    *ngFor="let data of stockEntries | category : item._id | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
                                     <td data-label="S.no">{{i+1}}</td>
                                     <td data-label="Product">
                                         {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
@@ -213,6 +229,8 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <pagination-controls (pageChange)="p=$event">
+                        </pagination-controls>
                     </div>
                 </div>
             </div>

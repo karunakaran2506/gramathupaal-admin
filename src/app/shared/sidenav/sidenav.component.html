@@ -156,11 +156,55 @@
             </mat-list-item>
             <mat-list-item [style.color]="this.activepage=='/view-stock' ? '#39813e' : 'inherit'"
                 (click)="openpage('/view-stock');makeactive('view-stock')" class="no-left-margin">
-                <mat-label>View Stock</mat-label>
+                <mat-label>View Total Stock</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/userwise-stock' ? '#39813e' : 'inherit'"
+                (click)="openpage('/userwise-stock');makeactive('userwise-stock')" class="no-left-margin">
+                <mat-label>View Userwise Stock</mat-label>
             </mat-list-item>
             <mat-list-item [style.color]="this.activepage=='/add-stock' ? '#39813e' : 'inherit'"
                 (click)="openpage('/add-stock');makeactive('add-stock')" class="no-left-margin">
                 <mat-label>Add Stock</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='feedstock'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='feedstock'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>store</mat-icon>
+                        <mat-label>Feed Stock</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/add-feed' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-feed');makeactive('add-feed')" class="no-left-margin">
+                <mat-label>Add Feed</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-feed' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-feed');makeactive('view-feed')" class="no-left-margin">
+                <mat-label>View Feed</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-feedstock' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-feedstock');makeactive('add-feedstock')" class="no-left-margin">
+                <mat-label>Add Feedstock Entry</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-feedstock' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-feedstock');makeactive('view-feedstock')" class="no-left-margin">
+                <mat-label>View Feedstock Entries</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-allfeedstock' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-allfeedstock');makeactive('view-allfeedstock')" class="no-left-margin">
+                <mat-label>View All Stock</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-feedledger' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-feedledger');makeactive('add-feedledger')" class="no-left-margin">
+                <mat-label>Add Feed Ledger</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-feedledger' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-feedledger');makeactive('view-feedledger')" class="no-left-margin">
+                <mat-label>View Feed Ledger</mat-label>
             </mat-list-item>
         </mat-expansion-panel>
 
@@ -248,6 +292,10 @@
                 (click)="openpage('/add-availablity');makeactive('add-availablity')" class="no-left-margin">
                 <mat-label>Update Availablity</mat-label>
             </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-deliveryentries' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-deliveryentries');makeactive('view-deliveryentries')" class="no-left-margin">
+                <mat-label>View Delivery Entries</mat-label>
+            </mat-list-item>
         </mat-expansion-panel>
 
         <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
@@ -267,6 +315,26 @@
             <mat-list-item [style.color]="this.activepage=='/view-lead' ? '#39813e' : 'inherit'"
                 (click)="openpage('/view-lead');makeactive('view-lead')" class="no-left-margin">
                 <mat-label>View Leads</mat-label>
+            </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="box-shadow: none;width: 100%;background: none;">
+            <mat-expansion-panel-header [ngClass]="this.active=='production'? 'selected-panel' : 'normal-panel'"
+                style="padding-left: 0px;">
+                <mat-panel-title>
+                    <mat-list-item [ngClass]="this.active=='production'? 'list-item2' : 'list-item1'">
+                        <mat-icon mat-list-icon>build</mat-icon>
+                        <mat-label>Production</mat-label>
+                    </mat-list-item>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/add-production' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-production');makeactive('add-production')" class="no-left-margin">
+                <mat-label>Add Production</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-production' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-production');makeactive('view-production')" class="no-left-margin">
+                <mat-label>View Production</mat-label>
             </mat-list-item>
         </mat-expansion-panel>
 
@@ -303,6 +371,15 @@
             <mat-list-item [style.color]="this.activepage=='/view-deliveryman' ? '#39813e' : 'inherit'"
                 (click)="openpage('/view-deliveryman');makeactive('view-deliveryman')" class="no-left-margin">
                 <mat-label>View Delivery Man</mat-label>
+            </mat-list-item>
+
+            <mat-list-item [style.color]="this.activepage=='/add-milkentryman' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-milkentryman');makeactive('add-milkentryman')" class="no-left-margin">
+                <mat-label>Add Milkentry Man</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-milkentryman' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-milkentryman');makeactive('view-milkentryman')" class="no-left-margin">
+                <mat-label>View Milkentry Man</mat-label>
             </mat-list-item>
         </mat-expansion-panel>
 

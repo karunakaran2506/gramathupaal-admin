@@ -18,6 +18,9 @@
                     <li class="list-group-item"><b>Date of Birth</b> : {{this.cow?.dateofbirth | date : 'longDate' || '-'}}</li>
                     <li class="list-group-item"><b>Time of Birth</b> : {{this.cow?.timeofbirth || '-'}}</li>
                     <li class="list-group-item"><b>Birth Weight</b> : {{this.cow?.birthweight || '-'}}</li>
+                    <li class="list-group-item"><b>Antibiotic to Nobil</b> : {{this.cow?.birthweight || '-'}}</li>
+                    <li class="list-group-item"><b>Breed Type</b> : {{this.cow?.breedtype || '-'}}</li>
+                    <li class="list-group-item"><b>Breed Description</b> : {{this.cow?.antibiotictonobil ? 'Yes' : 'No'}}</li>
                 </ul>
             </div>
             <div class="col-lg-4">
@@ -31,8 +34,12 @@
                         'longDate' || '-'}}</li>
                     <li class="list-group-item"><b>Date of Insemination</b> : {{this.cow?.dateofinsemination | date :
                         'longDate' || '-'}}</li>
-                    <li class="list-group-item"><b>Colustrum Milk Weight</b> : {{this.cow?.colostrummilkweight || '-'}}
-                    </li>
+                        <li class="list-group-item"><b>Bull Name</b> : {{this.cow?.bullname || '-'}}</li>
+                        <li class="list-group-item"><b>Bull Description</b> : {{this.cow?.bulldescription || '-'}}</li>
+                        <li class="list-group-item"><b>Colustrum Milk Weight</b> : {{this.cow?.colostrummilkweight || '-'}}
+                        </li>
+                        <li class="list-group-item"><b>Colustrum Milk Weight Feeded to Calf</b> : {{this.cow?.colostrumfeeded || '-'}}
+                        </li>
                     <li class="list-group-item"><b>Date of Normal Milk</b> : {{this.cow?.dateofnormalmilk | date :
                         'longDate' || '-'}}</li>
                     <li class="list-group-item"><b>Date of First Heat After Calving</b> :
@@ -50,6 +57,7 @@
                     <li *ngIf="this.cow?.stomachcleaning" class="list-group-item">Stomach Cleaning</li>
                     <li *ngIf="this.cow?.calciumintake" class="list-group-item">Calcium Intake</li>
                     <li *ngIf="this.cow?.brownsugar" class="list-group-item">Brown Sugar</li>
+                    <li *ngIf="this.cow?.exapar" class="list-group-item">EXAPAR</li>
                 </ul>
             </div>
         </div>

@@ -93,19 +93,19 @@ export class ViewStockComponent implements OnInit {
             stockIn: totala1milkstockin,
             stockOut: totala1milkstockout,
             byproduct: totala1milkbyproduct,
-            available: totala1milkstockin - (totala1milkstockout + totala1milkbyproduct)
+            available: (totala1milkstockin - (totala1milkstockout + totala1milkbyproduct))
           };
           this.totala2milk = {
             stockIn: totala2milkstockin,
             stockOut: totala2milkstockout,
             byproduct: totala2milkbyproduct,
-            available: totala2milkstockin - (totala2milkstockout + totala2milkbyproduct)
+            available: (totala2milkstockin - (totala2milkstockout + totala2milkbyproduct))
           };
           this.totalbuffalomilk = {
             stockIn: totalbuffalomilkstockin,
             stockOut: totalbuffalomilkstockout,
             byproduct: totalbuffalomilkbyproduct,
-            available: totalbuffalomilkstockin - (totalbuffalomilkstockout + totalbuffalomilkbyproduct)
+            available: (totalbuffalomilkstockin - (totalbuffalomilkstockout + totalbuffalomilkbyproduct))
           };
         })
     }

@@ -1,0 +1,42 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title>Cow Heat Entries</h2>
+<mat-dialog-content>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <table mdbTable class="table table-reponsive table-striped">
+                            <thead>
+                                <tr class="vertical">
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        S.no
+                                    </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        Entry Date
+                                    </th>
+                                    <th style="vertical-align: inherit;" scope="col">
+                                        Description
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="vertical"
+                                    *ngFor="let i = index; let data of cowheat | paginate: { itemsPerPage: 10, currentPage: p }">
+                                    <td data-label="S.no">{{i+1}}</td>
+                                    <td data-label="Entry Date">{{data?.entrydate | date: 'longDate'}}</td>
+                                    <td data-label="Description">{{data?.description}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p=$event">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

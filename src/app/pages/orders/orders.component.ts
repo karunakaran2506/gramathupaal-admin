@@ -3,22 +3,22 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api/api.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { OrderDetailComponent } from '../order-detail/order-detail.component';
 import { OrdersbypaymethodComponent } from '../ordersbypaymethod/ordersbypaymethod.component';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss']
+  styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent implements OnInit {
-
   storeSelected: string;
   orders: Array<any>;
   stocks: Array<any>;
   stores: Array<any>;
   viewType = 'order';
-  totalSales: number = 0.00;
+  totalSales: number = 0.0;
   totalcredit: number = 0;
   totalfree: number = 0;
   totalcash: number = 0;
@@ -34,23 +34,23 @@ export class OrdersComponent implements OnInit {
     private toastr: ToastrService,
     public dialog: MatDialog,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
-
-    this.apiservice.listStores()
-      .subscribe((data: any) => {
-        this.stores = data.stores;
-        this.storeSelected = data?.stores[0]?._id;
-        this.getData();
-      })
+    this.apiservice.listStores().subscribe((data: any) => {
+      this.stores = data.stores;
+      this.storeSelected = data?.stores[0]?._id;
+      this.fetchData();
+    });
   }
 
   openOrders(paymentMethod: any) {
-    const orders = this.orders.filter((x: any) => x.paymentMethod === paymentMethod);
+    const orders = this.orders.filter(
+      (x: any) => x.paymentMethod === paymentMethod
+    );
     this.dialog.open(OrdersbypaymethodComponent, {
       closeOnNavigation: true,
-      data: orders
+      data: orders,
     });
   }
 
@@ -59,71 +59,50 @@ export class OrdersComponent implements OnInit {
     this.dialog.open(OrderDetailComponent);
   }
 
-  changeValue(value) {
-    this.storeSelected = value;
-    this.datechange(this.dateSelected);
-  }
-
-  datechange(value) {
-    this.dateSelected = value;
-    if (this.storeSelected) {
-      this.getData();
-    }
-    else {
-      this.toastr.error('Select a store');
-    }
-  }
-
-  typeChange(value) {
-    this.viewType = value;
-    this.getData();
-  }
-
-  getData() {
+  fetchData() {
     let data = {
       date: this.dateSelected,
-      store: this.storeSelected
-    }
-    this.apiservice.datewiseOrderDetails(data)
-      .subscribe((response: any) => {
-        const data = response?.data;
-        this.totalcredit = data?.totalcredit;
-        this.totalmilkcard = data?.totalmilkcard;
-        this.totaltoken = data?.totaltoken;
-        this.totalupi = data?.totalupi;
-        this.totalcard = data?.totalcard;
-        this.totalcash = data?.totalcash;
-        this.totalfree = data?.totalfree;
-      })
+      store: this.storeSelected,
+    };
+    this.apiservice.datewiseOrderDetails(data).subscribe((response: any) => {
+      const data = response?.data;
+      this.totalcredit = data?.totalcredit;
+      this.totalmilkcard = data?.totalmilkcard;
+      this.totaltoken = data?.totaltoken;
+      this.totalupi = data?.totalupi;
+      this.totalcard = data?.totalcard;
+      this.totalcash = data?.totalcash;
+      this.totalfree = data?.totalfree;
+    });
 
     if (this.viewType === 'order') {
-      this.apiservice.listOrders(data)
-        .subscribe((data: any) => {
-          this.orders = data.orders;
-          let totalSales = 0;
-          this.orders.map((x: any) => {
-            totalSales = x?.totalamount + totalSales;
-          })
-          this.totalSales = totalSales;
-        })
-
+      this.apiservice.listOrders(data).subscribe((data: any) => {
+        this.orders = data.orders;
+        let totalSales = 0;
+        this.orders.map((x: any) => {
+          totalSales = x?.totalamount + totalSales;
+        });
+        this.totalSales = totalSales;
+      });
     } else {
-      this.apiservice.listStockEntriesByDate(data)
-        .subscribe((data: any) => {
-          this.stocks = data.entries;
-          let totalSales = 0;
-          this.stocks.map((x: any) => {
-            if (x?.product?.type === 'milk') {
-              const productquantity = x?.product?.quantity;
-              const quantity = x?.product?.unit === 'millilitre' ? (productquantity / 1000) : productquantity;
-              x.quantity = (x.quantity / quantity);
-              totalSales = (x.quantity * x?.product?.price) + totalSales;
-            } else {
-              totalSales = (x.quantity * x?.product?.price) + totalSales;
-            }
-          })
-          this.totalSales = totalSales;
-        })
+      this.apiservice.listStockEntriesByDate(data).subscribe((data: any) => {
+        this.stocks = data.entries;
+        let totalSales = 0;
+        this.stocks.map((x: any) => {
+          if (x?.product?.type === 'milk') {
+            const productquantity = x?.product?.quantity;
+            const quantity =
+              x?.product?.unit === 'millilitre'
+                ? productquantity / 1000
+                : productquantity;
+            x.quantity = x.quantity / quantity;
+            totalSales = x.quantity * x?.product?.price + totalSales;
+          } else {
+            totalSales = x.quantity * x?.product?.price + totalSales;
+          }
+        });
+        this.totalSales = totalSales;
+      });
     }
   }
 
@@ -132,4 +111,26 @@ export class OrdersComponent implements OnInit {
     this.router.navigateByUrl('/view-customer');
   }
 
+  deleteOrder(order: string) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      closeOnNavigation: true,
+      width: '70%',
+      data: 'Are you sure to delete the order?',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        let payload = {
+          order
+        };
+        this.apiservice.deleteOrder(payload).subscribe((data: any) => {
+          if (data?.success) {
+            this.toastr.success(data?.message);
+            this.fetchData();
+          } else {
+            this.toastr.error(data?.message);
+          }
+        });
+      }
+    });
+  }
 }

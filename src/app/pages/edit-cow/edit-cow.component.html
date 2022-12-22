@@ -25,6 +25,16 @@
                                     placeholder="Enter cow number">
                             </div>
                             <div class="col-lg-3">
+                                <label class="form-label">
+                                    <h3><b>Choose Store</b></h3>
+                                </label>
+                                <select [(ngModel)]="storeSelected" formControlName="store" class="form-control">
+                                    <option *ngFor="let data of store" value="{{data._id}}">
+                                        {{data.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
                                 <label for="mothercowname" class="form-label">
                                     <h3><b>Mother Cow Name</b></h3>
                                 </label>
@@ -73,10 +83,27 @@
                             </div>
                             <div class="col-lg-3">
                                 <label class="form-label">
+                                    <h3><b>Antibiotic to Nobil</b></h3>
+                                </label>
+                                <select formControlName="antibiotictonobil" class="form-control">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="colostrumfeeded" class="form-label">
+                                    <h3><b>Weight of colustrum feeded to Calf</b></h3>
+                                </label>
+                                <input formControlName="colostrumfeeded" type="number" min="1" id="colostrumfeeded"
+                                    class="form-control">
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="form-label">
                                     <h3><b>Choose Cow type</b></h3>
                                 </label>
                                 <select formControlName="type" class="form-control">
                                     <option value="calf">Calf</option>
+                                    <option value="hiefer">Hiefer</option>
                                     <option value="cow">Cow</option>
                                 </select>
                             </div>
@@ -88,6 +115,22 @@
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                 </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="breedtype" class="form-label">
+                                    <h3><b>Breed Type</b></h3>
+                                </label>
+                                <select formControlName="breedtype" class="form-control">
+                                    <option value="jersey">Jersey</option>
+                                    <option value="desi">Desi</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="breeddescription" class="form-label">
+                                    <h3><b>Breed Description</b></h3>
+                                </label>
+                                <input formControlName="breeddescription" type="text" id="breeddescription"
+                                    class="form-control" placeholder="Enter breed description">
                             </div>
                             <div class="col-lg-3">
                                 <label for="dateofdewarming" class="form-label">
@@ -123,6 +166,20 @@
                                 </label>
                                 <input formControlName="dateofinsemination" type="date" id="dateofinsemination"
                                     class="form-control">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="bullname" class="form-label">
+                                    <h3><b>Bull Name</b></h3>
+                                </label>
+                                <input formControlName="bullname" type="text" id="bullname" class="form-control"
+                                    placeholder="Enter bull name">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="bulldescription" class="form-label">
+                                    <h3><b>Bull Description</b></h3>
+                                </label>
+                                <input formControlName="bulldescription" type="text" id="bulldescription"
+                                    class="form-control" placeholder="Enter bull description">
                             </div>
                             <div class="col-lg-3">
                                 <label for="colostrummilkweight" class="form-label">
@@ -170,21 +227,30 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="checkbox-form">
-                                    <input class="checkbox" type="checkbox" formControlName="stomachcleaning" id="stomachcleaning">
+                                    <input class="checkbox" type="checkbox" formControlName="stomachcleaning"
+                                        id="stomachcleaning">
                                     <label class="form-label" for="stomachcleaning">
                                         <h3><b>Stomach Cleaning</b></h3>
                                     </label>
                                 </div>
                                 <div class="checkbox-form">
-                                    <input class="checkbox" type="checkbox" formControlName="calciumintake" id="calciumintake">
+                                    <input class="checkbox" type="checkbox" formControlName="calciumintake"
+                                        id="calciumintake">
                                     <label class="form-label" for="calciumintake">
                                         <h3><b>Calcium Intake</b></h3>
                                     </label>
                                 </div>
                                 <div class="checkbox-form">
-                                    <input class="checkbox" type="checkbox" formControlName="brownsugar" id="brownsugar">
+                                    <input class="checkbox" type="checkbox" formControlName="brownsugar"
+                                        id="brownsugar">
                                     <label class="form-label" for="brownsugar">
                                         <h3><b>Brown Sugar</b></h3>
+                                    </label>
+                                </div>
+                                <div class="checkbox-form">
+                                    <input class="checkbox" type="checkbox" formControlName="exapar" id="exapar">
+                                    <label class="form-label" for="exapar">
+                                        <h3><b>EXAPAR</b></h3>
                                     </label>
                                 </div>
                             </div>
@@ -198,8 +264,8 @@
                                     <h2><b>Vaccination {{i+1}}</b></h2>
                                 </div>
                                 <div style="text-align: end;" class="col-lg-4">
-                                    <button *ngIf="checkvaccinationForm(i)" type="button" (click)="removeVaccinationForm(i)"
-                                        class="btn btn-danger">Remove</button>
+                                    <button *ngIf="checkvaccinationForm(i)" type="button"
+                                        (click)="removeVaccinationForm(i)" class="btn btn-danger">Remove</button>
                                 </div>
                             </div>
                             <br>
@@ -274,8 +340,7 @@
                         </div>
                         <br>
                         <br>
-                        <div formArrayName="cowmilk"
-                            *ngFor="let item of editCowForm.get('cowmilk')['controls']; let i = index;">
+                        <div formArrayName="cowmilk" *ngFor="let item of editCowForm.get('cowmilk')['controls']; let i = index;">
                             <br>
                             <div class="row">
                                 <div class="col-lg-8">
@@ -321,6 +386,124 @@
                             </div>
                         </div>
                         <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div formArrayName="cowdewarming"
+                            *ngFor="let item of editCowForm.get('cowdewarming')['controls']; let i = index;">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h2><b>Cow Dewarming {{i+1}}</b></h2>
+                                </div>
+                                <div style="text-align: end;" class="col-lg-4">
+                                    <button type="button" *ngIf="checkcowdewarmingForm(i)" (click)="removeCowDewarmingForm(i)"
+                                        class="btn btn-danger">Remove</button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" [formGroupName]="i">
+                                <div class="col-lg-4">
+                                    <label for="entryDate" class="form-label">
+                                        <h3><b>Entry Date</b></h3>
+                                    </label>
+                                    <input formControlName="entryDate" type="date" id="entryDate" class="form-control">
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="description" class="form-label">
+                                        <h3><b>Description</b></h3>
+                                    </label>
+                                    <input formControlName="description" type="text" id="description"
+                                        class="form-control" placeholder="Enter description">
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div style="text-align: end;" class="col-lg-12 heading">
+                                <button type="button" (click)="addCowDewarming()" class="btn btn-success">Add Cow
+                                    Dewarming</button>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div formArrayName="cowheat"
+                            *ngFor="let item of editCowForm.get('cowheat')['controls']; let i = index;">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h2><b>Cow Heat {{i+1}}</b></h2>
+                                </div>
+                                <div style="text-align: end;" class="col-lg-4">
+                                    <button type="button" *ngIf="checkcowheatForm(i)" (click)="removeCowHeatForm(i)"
+                                        class="btn btn-danger">Remove</button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" [formGroupName]="i">
+                                <div class="col-lg-4">
+                                    <label for="entryDate" class="form-label">
+                                        <h3><b>Entry Date</b></h3>
+                                    </label>
+                                    <input formControlName="entryDate" type="date" id="entryDate" class="form-control">
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="description" class="form-label">
+                                        <h3><b>Description</b></h3>
+                                    </label>
+                                    <input formControlName="description" type="text" id="description"
+                                        class="form-control" placeholder="Enter description">
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div style="text-align: end;" class="col-lg-12 heading">
+                                <button type="button" (click)="addCowHeat()" class="btn btn-success">Add Cow
+                                    Heat</button>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div formArrayName="cowteeth"
+                            *ngFor="let item of editCowForm.get('cowteeth')['controls']; let i = index;">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h2><b>Cow Teeth {{i+1}}</b></h2>
+                                </div>
+                                <div style="text-align: end;" class="col-lg-4">
+                                    <button type="button" *ngIf="checkcowteethForm(i)" (click)="removeCowTeeth(i)"
+                                        class="btn btn-danger">Remove</button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" [formGroupName]="i">
+                                <div class="col-lg-4">
+                                    <label for="entryDate" class="form-label">
+                                        <h3><b>Entry Date</b></h3>
+                                    </label>
+                                    <input formControlName="entryDate" type="date" id="entryDate" class="form-control">
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="description" class="form-label">
+                                        <h3><b>Description</b></h3>
+                                    </label>
+                                    <input formControlName="description" type="text" id="description"
+                                        class="form-control" placeholder="Enter description">
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div style="text-align: end;" class="col-lg-12 heading">
+                                <button type="button" (click)="addCowTeeth()" class="btn btn-success">Add Cow
+                                    Teeth</button>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-6" style="text-align: left">
                                 <button type="button" (click)="oncancel()"

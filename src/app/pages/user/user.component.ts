@@ -10,10 +10,9 @@ import { ViewUserprofileComponent } from '../view-userprofile/view-userprofile.c
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-
   storeSelected: string;
   users: Array<any>;
   stores: Array<any>;
@@ -23,28 +22,25 @@ export class UserComponent implements OnInit {
     private dialog: MatDialog,
     private apiservice: ApiService,
     private router: Router,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
-
-    this.apiservice.listStores()
-      .subscribe((data: any) => {
-        this.storeSelected = data?.stores[0]?._id;
-        this.stores = data.stores;
-        this.changeValue(this.storeSelected);
-      })
+    this.apiservice.listStores().subscribe((data: any) => {
+      this.storeSelected = data?.stores[0]?._id;
+      this.stores = data.stores;
+      this.changeValue(this.storeSelected);
+    });
   }
 
   changeValue(value: string) {
     this.storeSelected = value;
     let data = {
-      store: this.storeSelected
-    }
-    this.apiservice.viewUsers(data)
-      .subscribe((data: any) => {
-        this.users = data.users;
-      })
+      store: this.storeSelected,
+    };
+    this.apiservice.viewUsers(data).subscribe((data: any) => {
+      this.users = data.users;
+    });
   }
 
   editProduct(value: string) {
@@ -56,7 +52,7 @@ export class UserComponent implements OnInit {
     this.apiservice.userSelected = user;
     this.dialog.open(ViewUserprofileComponent, {
       closeOnNavigation: true,
-      width: '50%'
+      width: '50%',
     });
   }
 
@@ -64,13 +60,13 @@ export class UserComponent implements OnInit {
     this.apiservice.userSelected = user;
     this.dialog.open(ViewSessionComponent, {
       closeOnNavigation: true,
-      width: '50%'
+      width: '50%',
     });
   }
 
   editUser(value: any) {
     this.apiservice.userSelected = value;
-    this.router.navigateByUrl('/edit-user')
+    this.router.navigateByUrl('/edit-user');
   }
 
   userSales(value: any) {
@@ -82,24 +78,22 @@ export class UserComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       closeOnNavigation: true,
       width: '70%',
-      data: "Are you sure to delete the user?"
+      data: 'Are you sure to delete the user?',
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         let data = {
-          user
+          user,
         };
-        this.apiservice.deleteUser(data)
-          .subscribe((data: any) => {
-            if (data?.success) {
-              this.toastr.success(data?.message);
-              this.changeValue(this.storeSelected);
-            } else {
-              this.toastr.error(data?.message);
-            }
-          })
+        this.apiservice.deleteUser(data).subscribe((data: any) => {
+          if (data?.success) {
+            this.toastr.success(data?.message);
+            this.changeValue(this.storeSelected);
+          } else {
+            this.toastr.error(data?.message);
+          }
+        });
       }
     });
   }
-
 }

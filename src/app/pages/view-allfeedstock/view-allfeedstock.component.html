@@ -1,0 +1,61 @@
+<div class="container-fluid" style="padding-bottom:1%">
+    <div class="row">
+        <div class="col-lg-4 heading">
+            <h2><b>View All Feed Stock</b></h2>
+        </div>
+        <div class="col-lg-8 heading mar-r8">
+            <mat-form-field style="margin-right: 3%;" appearance="outline">
+                <mat-label>Choose Store</mat-label>
+                <mat-select (selectionChange)="fetchData()" [(ngModel)]="storeSelected">
+                    <mat-option *ngFor="let data of stores" [value]="data._id">{{data.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <table mdbTable class="table table-reponsive table-striped">
+                        <thead>
+                            <tr class="vertical">
+                                <th style="vertical-align: inherit;" scope="col">
+                                    S.no
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Feed Name
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Total Stock In
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Total Stock Out
+                                </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    Total Remaining
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="vertical"
+                                *ngFor="let data of stockEntries | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
+                                <td data-label="S.no">{{i+1}}</td>
+                                <td data-label="Feed Name">
+                                    {{data?.feed?.name}}
+                                </td>
+                                <td data-label="Total Stock In">{{data?.totalStockIn}}</td>
+                                <td data-label="Total Stock Out">{{data?.totalStockOut}}</td>
+                                <td data-label="Total Remaining">{{data?.totalStockIn - data?.totalStockOut}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p=$event">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

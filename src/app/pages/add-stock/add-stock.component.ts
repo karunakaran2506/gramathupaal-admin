@@ -7,15 +7,14 @@ import { ApiService } from 'src/app/service/api/api.service';
 @Component({
   selector: 'app-add-stock',
   templateUrl: './add-stock.component.html',
-  styleUrls: ['./add-stock.component.scss']
+  styleUrls: ['./add-stock.component.scss'],
 })
 export class AddStockComponent implements OnInit {
-
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
 
   addStock: FormGroup;
   storeSelected: string;
-  product: Array<any>;
+  productData: Array<any>;
   allProduct: Array<any>;
   stores: Array<any>;
   entryDate = new Date();
@@ -23,72 +22,61 @@ export class AddStockComponent implements OnInit {
   constructor(
     private apiservice: ApiService,
     private toastr: ToastrService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit() {
-
     this.addStock = new FormGroup({
-      product: new FormControl({}),
+      product: new FormControl(),
       store: new FormControl(),
-      type: new FormControl('all'),
+      type: new FormControl('milk'),
       stocktype: new FormControl('in'),
       quantity: new FormControl(),
       entryDate: new FormControl(this.entryDate),
-    })
+    });
 
-    this.apiservice.listStores()
-      .subscribe((data: any) => {
-        this.storeSelected = data?.stores[0]?._id;
-        this.stores = data?.stores;
-        this.changeValue(this.storeSelected);
-      })
+    this.apiservice.listStores().subscribe((data: any) => {
+      this.storeSelected = data?.stores[0]?._id;
+      this.stores = data?.stores;
+      this.changeValue(this.storeSelected);
+    });
   }
 
-  changeValue(value) {
+  changeValue(value: any) {
     this.storeSelected = value;
-    let data = {
-      store: this.storeSelected
-    }
-    this.apiservice.listProduct(data)
-      .subscribe((data: any) => {
-        this.product = data.product;
-        this.allProduct = data.product;
-      })
+    let payload = {
+      store: this.storeSelected,
+    };
+    this.apiservice.listProduct(payload).subscribe((data: any) => {
+      this.allProduct = data.product;
+      this.productData = data.product.filter((x: any) => x.type === 'milk');
+    });
   }
 
-  changeCategory(value) {
-    if (value === 'milk' || value === 'others') {
-      this.product = this.allProduct.filter((x: any) => x.type === value);
-    } else {
-      this.product = this.allProduct;
-    }
+  changeCategory(value: any) {
+    this.productData = this.allProduct.filter((x: any) => x.type === value);
   }
 
   onSubmit(value: any) {
     if (this.addStock.status === 'INVALID') {
       this.toastr.error('Enter valid data');
-    }
-    else {
-      const product = value?.product?.split(",");
+    } else {
       let data = {
         ...value,
-        product: product[0],
-        producttype: product[1],
+        product: value?.product,
+        producttype: value?.type,
         entryDate: this.entryDate,
-        store: this.storeSelected
+        store: this.storeSelected,
       };
 
-      this.apiservice.saveStockEntry(data)
-        .subscribe((data: any) => {
-          console.log('data');
-          if (data.success) {
-            this.toastr.success(data.message);
-            this.router.navigateByUrl('/view-stock');
-          }
-          else {
-            this.toastr.error(data.message);
-          }
-        })
+      this.apiservice.saveStockEntry(data).subscribe((data: any) => {
+        if (data.success) {
+          this.toastr.success(data.message);
+          this.router.navigateByUrl('/view-stock');
+        } else {
+          this.toastr.error(data.message);
+        }
+      });
     }
   }
 

@@ -1,13 +1,16 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { MDBBootstrapModule } from "angular-bootstrap-md";
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { TableModule, IconsModule } from 'angular-bootstrap-md';
-import { DashboardComponent } from '../pages/dashboard/dashboard.component';
-import { AuthGuard } from "../service/auth-guard/auth.guard";
+import { SharedModule } from '../shared/shared.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AuthGuard } from '../service/auth-guard/auth.guard';
 import { MaterialModule } from '../shared/material/material.module';
+
+import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CostComponent } from './cost/cost.component';
@@ -17,9 +20,6 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoryComponent } from './category/category.component';
 import { AddStockComponent } from './add-stock/add-stock.component';
-import { SharedModule } from "../shared/shared.module";
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
 import { DailySalesComponent } from './daily-sales/daily-sales.component';
 import { ViewStockComponent } from './view-stock/view-stock.component';
 import { StockHistoryComponent } from './stock-history/stock-history.component';
@@ -45,7 +45,7 @@ import { AddSubscriptionorderComponent } from './add-subscriptionorder/add-subsc
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { AddDeliveryuserComponent } from './add-deliveryuser/add-deliveryuser.component';
 import { ViewDeliveryuserComponent } from './view-deliveryuser/view-deliveryuser.component';
-import { ViewCustomerComponent } from "./view-customer/view-customer.component";
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { DeliveryavailablityComponent } from './deliveryavailablity/deliveryavailablity.component';
 import { AddLeadComponent } from './add-lead/add-lead.component';
 import { ViewLeadComponent } from './view-lead/view-lead.component';
@@ -67,136 +67,416 @@ import { AddVaccinationComponent } from './add-vaccination/add-vaccination.compo
 import { AddCowweightComponent } from './add-cowweight/add-cowweight.component';
 import { AddCowmilkentryComponent } from './add-cowmilkentry/add-cowmilkentry.component';
 import { EditCowComponent } from './edit-cow/edit-cow.component';
+import { AddMilkentrymanComponent } from './add-milkentryman/add-milkentryman.component';
+import { EditMilkentrymanComponent } from './edit-milkentryman/edit-milkentryman.component';
+import { ViewMilkentrymanComponent } from './view-milkentryman/view-milkentryman.component';
+import { AddCowheatComponent } from './add-cowheat/add-cowheat.component';
+import { AddCowdewarmingComponent } from './add-cowdewarming/add-cowdewarming.component';
+import { AddCowteethComponent } from './add-cowteeth/add-cowteeth.component';
+import { ViewCowheatComponent } from './view-cowheat/view-cowheat.component';
+import { ViewCowdewarmingComponent } from './view-cowdewarming/view-cowdewarming.component';
+import { ViewCowteethComponent } from './view-cowteeth/view-cowteeth.component';
+import { EditMilkcardComponent } from './edit-milkcard/edit-milkcard.component';
+import { ViewUserwiseStockComponent } from './view-userwise-stock/view-userwise-stock.component';
+import { AddProductionComponent } from './add-production/add-production.component';
+import { ListProductionComponent } from './list-production/list-production.component';
+import { AddFeedstockComponent } from './add-feedstock/add-feedstock.component';
+import { ViewFeedstockComponent } from './view-feedstock/view-feedstock.component';
+import { EditProductionComponent } from './edit-production/edit-production.component';
+import { AddFeedComponent } from './add-feed/add-feed.component';
+import { ViewFeedComponent } from './view-feed/view-feed.component';
+import { AddFeedledgerComponent } from './add-feedledger/add-feedledger.component';
+import { ViewFeedledgerComponent } from './view-feedledger/view-feedledger.component';
+import { UpdateFeedledgerComponent } from './update-feedledger/update-feedledger.component';
+import { ViewAllfeedstockComponent } from './view-allfeedstock/view-allfeedstock.component';
+import { ViewDeliveryhistoryComponent } from './view-deliveryhistory/view-deliveryhistory.component';
+import { ViewDeliveryEntriesComponent } from './view-delivery-entries/view-delivery-entries.component';
 
 const routes: Routes = [
-    { path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-    { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
-    { path: 'cost', component: CostComponent, canActivate: [AuthGuard] },
-    { path: 'add-milkcard', component: AddMilkcardComponent, canActivate: [AuthGuard] },
-    { path: 'view-milkcard', component: ViewMilkcardComponent, canActivate: [AuthGuard] },
-    { path: 'add-cost', component: AddCostComponent, canActivate: [AuthGuard] },
-    { path: 'add-cow', component: AddCowComponent, canActivate: [AuthGuard] },
-    { path: 'edit-cow', component: EditCowComponent, canActivate: [AuthGuard] },
-    { path: 'view-cow', component: ViewCowComponent, canActivate: [AuthGuard] },
-    { path: 'product', component: ProductsComponent, canActivate: [AuthGuard] },
-    { path: 'add-product', component: AddProductComponent, canActivate: [AuthGuard] },
-    { path: 'edit-product', component: EditProductComponent, canActivate: [AuthGuard] },
-    { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
-    { path: 'add-category', component: AddCategoryComponent, canActivate: [AuthGuard] },
-    { path: 'view-stock', component: ViewStockComponent, canActivate: [AuthGuard] },
-    { path: 'today-stock', component: TodaysStockComponent, canActivate: [AuthGuard] },
-    { path: 'stock-history', component: StockHistoryComponent, canActivate: [AuthGuard] },
-    { path: 'todays-sales', component: DailySalesComponent, canActivate: [AuthGuard] },
-    { path: 'add-stock', component: AddStockComponent, canActivate: [AuthGuard] },
-    { path: 'order-detail', component: OrderDetailComponent, canActivate: [AuthGuard] },
-    { path: 'add-user', component: AddUserComponent, canActivate: [AuthGuard] },
-    { path: 'edit-user', component: EditUserComponent, canActivate: [AuthGuard] },
-    { path: 'view-user', component: UserComponent, canActivate: [AuthGuard] },
-    { path: 'view-userprofile', component: ViewUserprofileComponent, canActivate: [AuthGuard] },
-    { path: 'past-sessions', component: PastSessionsComponent, canActivate: [AuthGuard] },
-    { path: 'past-sales', component: PastUsersalesComponent, canActivate: [AuthGuard] },
-    { path: 'past-sessions', component: PastSessionsComponent, canActivate: [AuthGuard] },
-    { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
-    { path: 'add-customer', component: AddCustomerComponent, canActivate: [AuthGuard] },
-    { path: 'edit-customer', component: EditCustomerComponent, canActivate: [AuthGuard] },
-    { path: 'view-customer', component: ViewCustomerComponent, canActivate: [AuthGuard] },
-    { path: 'milkcard-history', component: MilkcardHistoryComponent, canActivate: [AuthGuard] },
-    { path: 'token-history', component: TokenHistoryComponent, canActivate: [AuthGuard] },
-    { path: 'subscription-history', component: SubscriptionHistoryComponent, canActivate: [AuthGuard] },
-    { path: 'add-subscriptionpack', component: AddSubscriptionpackComponent, canActivate: [AuthGuard] },
-    { path: 'edit-subscriptionpack', component: EditSubscriptionpackComponent, canActivate: [AuthGuard] },
-    { path: 'view-subscriptionpack', component: ViewSubscriptionpackComponent, canActivate: [AuthGuard] },
-    { path: 'add-deliveryman', component: AddDeliveryuserComponent, canActivate: [AuthGuard] },
-    { path: 'view-deliveryman', component: ViewDeliveryuserComponent, canActivate: [AuthGuard] },
-    { path: 'edit-deliveryman', component: EditDeliveryuserComponent, canActivate: [AuthGuard] },
-    { path: 'add-activesubscription', component: AddSubscriptionorderComponent, canActivate: [AuthGuard] },
-    { path: 'edit-activesubscription', component: EditSubscriptionorderComponent, canActivate: [AuthGuard] },
-    { path: 'view-activesubscription', component: ViewSubscriptionorderComponent, canActivate: [AuthGuard] },
-    { path: 'add-availablity', component: DeliveryavailablityComponent, canActivate: [AuthGuard] },
-    { path: 'add-lead', component: AddLeadComponent, canActivate: [AuthGuard] },
-    { path: 'edit-lead', component: EditLeadComponent, canActivate: [AuthGuard] },
-    { path: 'view-lead', component: ViewLeadComponent, canActivate: [AuthGuard] },
-    { path: 'entry-milksupply', component: AddMilksupplyComponent, canActivate: [AuthGuard] },
-    { path: 'today-milksupply', component: ViewMilksupplyComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    component: DashboardComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  // Cow
+  { path: 'add-cost', component: AddCostComponent, canActivate: [AuthGuard] },
+  { path: 'add-cow', component: AddCowComponent, canActivate: [AuthGuard] },
+  { path: 'edit-cow', component: EditCowComponent, canActivate: [AuthGuard] },
+  { path: 'view-cow', component: ViewCowComponent, canActivate: [AuthGuard] },
+  // Category & Products
+  { path: 'product', component: ProductsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'add-product',
+    component: AddProductComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-product',
+    component: EditProductComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
+  {
+    path: 'add-category',
+    component: AddCategoryComponent,
+    canActivate: [AuthGuard],
+  },
+  // Stock
+  { path: 'add-stock', component: AddStockComponent, canActivate: [AuthGuard] },
+  {
+    path: 'view-stock',
+    component: ViewStockComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'today-stock',
+    component: TodaysStockComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'stock-history',
+    component: StockHistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'userwise-stock',
+    component: ViewUserwiseStockComponent,
+    canActivate: [AuthGuard],
+  },
+  // Sales, Accounts & Orders
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+  { path: 'cost', component: CostComponent, canActivate: [AuthGuard] },
+  {
+    path: 'todays-sales',
+    component: DailySalesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'past-sales',
+    component: PastUsersalesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'order-detail',
+    component: OrderDetailComponent,
+    canActivate: [AuthGuard],
+  },
+  // Users
+  { path: 'add-user', component: AddUserComponent, canActivate: [AuthGuard] },
+  { path: 'edit-user', component: EditUserComponent, canActivate: [AuthGuard] },
+  { path: 'view-user', component: UserComponent, canActivate: [AuthGuard] },
+  {
+    path: 'view-userprofile',
+    component: ViewUserprofileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'past-sessions',
+    component: PastSessionsComponent,
+    canActivate: [AuthGuard],
+  },
+  // Customers
+  {
+    path: 'customers',
+    component: CustomersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-customer',
+    component: AddCustomerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-customer',
+    component: EditCustomerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-customer',
+    component: ViewCustomerComponent,
+    canActivate: [AuthGuard],
+  },
+  // Sales History
+  {
+    path: 'milkcard-history',
+    component: MilkcardHistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'token-history',
+    component: TokenHistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'subscription-history',
+    component: SubscriptionHistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  // Delivery man
+  {
+    path: 'add-deliveryman',
+    component: AddDeliveryuserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-deliveryman',
+    component: ViewDeliveryuserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-deliveryman',
+    component: EditDeliveryuserComponent,
+    canActivate: [AuthGuard],
+  },
+  // Subscription & Subcription Pack
+  {
+    path: 'add-subscriptionpack',
+    component: AddSubscriptionpackComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-subscriptionpack',
+    component: EditSubscriptionpackComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-subscriptionpack',
+    component: ViewSubscriptionpackComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-activesubscription',
+    component: AddSubscriptionorderComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-activesubscription',
+    component: EditSubscriptionorderComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-activesubscription',
+    component: ViewSubscriptionorderComponent,
+    canActivate: [AuthGuard],
+  },
+  // Milk delivery
+  {
+    path: 'add-availablity',
+    component: DeliveryavailablityComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'entry-milksupply',
+    component: AddMilksupplyComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'today-milksupply',
+    component: ViewMilksupplyComponent,
+    canActivate: [AuthGuard],
+  },
+  // Leads
+  { path: 'add-lead', component: AddLeadComponent, canActivate: [AuthGuard] },
+  { path: 'edit-lead', component: EditLeadComponent, canActivate: [AuthGuard] },
+  { path: 'view-lead', component: ViewLeadComponent, canActivate: [AuthGuard] },
+  // Milk entry man
+  {
+    path: 'add-milkentryman',
+    component: AddMilkentrymanComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-milkentryman',
+    component: EditMilkentrymanComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-milkentryman',
+    component: ViewMilkentrymanComponent,
+    canActivate: [AuthGuard],
+  },
+  // Milk card
+  {
+    path: 'add-milkcard',
+    component: AddMilkcardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-milkcard',
+    component: EditMilkcardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-milkcard',
+    component: ViewMilkcardComponent,
+    canActivate: [AuthGuard],
+  },
+  // Production
+  {
+    path: 'add-production',
+    component: AddProductionComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-production',
+    component: ListProductionComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-production',
+    component: EditProductionComponent,
+    canActivate: [AuthGuard],
+  },
+  // Feed
+  {
+    path: 'add-feed',
+    component: AddFeedComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-feed',
+    component: ViewFeedComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-feedstock',
+    component: AddFeedstockComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-feedstock',
+    component: ViewFeedstockComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-feedledger',
+    component: AddFeedledgerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-feedledger',
+    component: ViewFeedledgerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-allfeedstock',
+    component: ViewAllfeedstockComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-delivery-history',
+    component: ViewDeliveryhistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-deliveryentries',
+    component: ViewDeliveryEntriesComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
-    imports: [
-        Ng2SearchPipeModule,
-        RouterModule.forChild(routes),
-        CommonModule,
-        MaterialModule,
-        NgxPaginationModule,
-        ReactiveFormsModule,
-        FormsModule,
-        TableModule,
-        IconsModule,
-        MDBBootstrapModule.forRoot(),
-        SharedModule,
-    ],
-    declarations: [
-        ViewCustomerComponent,
-        OrderDetailComponent,
-        OrdersComponent,
-        CostComponent,
-        ProductsComponent,
-        AddProductComponent,
-        EditProductComponent,
-        AddCategoryComponent,
-        CategoryComponent,
-        AddStockComponent,
-        DailySalesComponent,
-        ViewStockComponent,
-        StockHistoryComponent,
-        AddCostComponent,
-        AddUserComponent,
-        UserComponent,
-        ViewUserprofileComponent,
-        EditUserComponent,
-        PastSessionsComponent,
-        PastUsersalesComponent,
-        ViewSessionComponent,
-        AddMilkcardComponent,
-        ViewMilkcardComponent,
-        OrdersbypaymethodComponent,
-        CustomersComponent,
-        TodaysStockComponent,
-        MilkcardHistoryComponent,
-        TokenHistoryComponent,
-        AddSubscriptionpackComponent,
-        ViewSubscriptionpackComponent,
-        ViewSubscriptionorderComponent,
-        AddSubscriptionorderComponent,
-        AddCustomerComponent,
-        AddDeliveryuserComponent,
-        ViewDeliveryuserComponent,
-        DeliveryavailablityComponent,
-        AddLeadComponent,
-        ViewLeadComponent,
-        EditLeadComponent,
-        SubscriptionHistoryComponent,
-        EditSubscriptionpackComponent,
-        EditSubscriptionorderComponent,
-        EditDeliveryuserComponent,
-        EditCustomerComponent,
-        AddMilksupplyComponent,
-        ViewMilksupplyComponent,
-        AddCowComponent,
-        ViewCowComponent,
-        ViewCowdetailComponent,
-        ViewVaccinationsComponent,
-        ViewCowweightComponent,
-        ViewCowmilkentryComponent,
-        AddVaccinationComponent,
-        AddCowweightComponent,
-        AddCowmilkentryComponent,
-        EditCowComponent
-    ],
-    providers: [
-        AuthGuard
-    ]
-
+  imports: [
+    Ng2SearchPipeModule,
+    RouterModule.forChild(routes),
+    CommonModule,
+    MaterialModule,
+    NgxPaginationModule,
+    ReactiveFormsModule,
+    FormsModule,
+    TableModule,
+    IconsModule,
+    MDBBootstrapModule.forRoot(),
+    SharedModule,
+  ],
+  declarations: [
+    ViewCustomerComponent,
+    OrderDetailComponent,
+    OrdersComponent,
+    CostComponent,
+    ProductsComponent,
+    AddProductComponent,
+    EditProductComponent,
+    AddCategoryComponent,
+    CategoryComponent,
+    AddStockComponent,
+    DailySalesComponent,
+    ViewStockComponent,
+    StockHistoryComponent,
+    AddCostComponent,
+    AddUserComponent,
+    UserComponent,
+    ViewUserprofileComponent,
+    EditUserComponent,
+    PastSessionsComponent,
+    PastUsersalesComponent,
+    ViewSessionComponent,
+    AddMilkcardComponent,
+    ViewMilkcardComponent,
+    OrdersbypaymethodComponent,
+    CustomersComponent,
+    TodaysStockComponent,
+    MilkcardHistoryComponent,
+    TokenHistoryComponent,
+    AddSubscriptionpackComponent,
+    ViewSubscriptionpackComponent,
+    ViewSubscriptionorderComponent,
+    AddSubscriptionorderComponent,
+    AddCustomerComponent,
+    AddDeliveryuserComponent,
+    ViewDeliveryuserComponent,
+    DeliveryavailablityComponent,
+    AddLeadComponent,
+    ViewLeadComponent,
+    EditLeadComponent,
+    SubscriptionHistoryComponent,
+    EditSubscriptionpackComponent,
+    EditSubscriptionorderComponent,
+    EditDeliveryuserComponent,
+    EditCustomerComponent,
+    AddMilksupplyComponent,
+    ViewMilksupplyComponent,
+    AddCowComponent,
+    ViewCowComponent,
+    ViewCowdetailComponent,
+    ViewVaccinationsComponent,
+    ViewCowweightComponent,
+    ViewCowmilkentryComponent,
+    AddVaccinationComponent,
+    AddCowweightComponent,
+    AddCowmilkentryComponent,
+    EditCowComponent,
+    AddMilkentrymanComponent,
+    EditMilkentrymanComponent,
+    ViewMilkentrymanComponent,
+    AddCowheatComponent,
+    AddCowdewarmingComponent,
+    AddCowteethComponent,
+    ViewCowheatComponent,
+    ViewCowdewarmingComponent,
+    ViewCowteethComponent,
+    EditMilkcardComponent,
+    ViewUserwiseStockComponent,
+    AddProductionComponent,
+    ListProductionComponent,
+    AddFeedstockComponent,
+    ViewFeedstockComponent,
+    EditProductionComponent,
+    AddFeedComponent,
+    ViewFeedComponent,
+    AddFeedledgerComponent,
+    ViewFeedledgerComponent,
+    UpdateFeedledgerComponent,
+    ViewAllfeedstockComponent,
+    ViewDeliveryhistoryComponent,
+    ViewDeliveryEntriesComponent,
+  ],
+  providers: [AuthGuard],
 })
-
-export class PagesModule { }
+export class PagesModule {}

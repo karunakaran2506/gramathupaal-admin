@@ -14,7 +14,8 @@
         <div class="col-lg-8 heading mar-r8">
             <mat-form-field style="margin-right: 3%;" appearance="outline">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" (dateChange)="datechange($event.value)" [(ngModel)]="dateSelected">
+                <input matInput [matDatepicker]="picker" (dateChange)="datechange($event.value)"
+                    [(ngModel)]="dateSelected">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -48,6 +49,88 @@
         </div>
     </div>
     <br>
+    <div class="row">
+        <div class="col-lg-3 pad-top-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Sales</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalamount | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('cash')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Cash</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalcash | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('card')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Card</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalcard | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('credit')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Credit</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalcredit | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('free')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Free / Donation</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalfree | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('upi')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total UPI</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalupi | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('token')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Token Sales</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totaltoken | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 pad-top-5" (click)="openOrders('milkcard')">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Milkcard Sales</h2>
+                    <h1 class="card-text">
+                        <b>{{this.totalmilkcard | currency : 'INR'}}</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
     <div class="row">
         <div class="col-lg-12">
@@ -83,21 +166,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="vertical" *ngFor="let i =index;let item of orders | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <tr class="vertical"
+                                *ngFor="let i =index;let item of orders | paginate: { itemsPerPage: 10, currentPage: p }">
                                 <td data-label="S.no">{{i+1}}</td>
                                 <td data-label="Order No">{{item?.orderid}}</td>
                                 <td data-label="Date & Time">{{item?.createdat | date : 'dd/MM/yy, h:mm a'}}</td>
                                 <td data-label="Payment Method">{{item?.paymentMethod | titlecase}}</td>
                                 <td data-label="Amount">{{item?.totalamount | currency : 'INR'}}</td>
-                                <td (click)="viewCustomer(item.customer)" data-label="Customer Name">{{item?.customer ? item?.customer?.name : '-'}}</td>
-                                <td (click)="viewCustomer(item.customer)" data-label="Mobile Number">{{item?.customer ? item?.customer?.phone : '-'}}</td>
+                                <td (click)="viewCustomer(item.customer)" data-label="Customer Name">{{item?.customer ?
+                                    item?.customer?.name : '-'}}</td>
+                                <td (click)="viewCustomer(item.customer)" data-label="Mobile Number">{{item?.customer ?
+                                    item?.customer?.phone : '-'}}</td>
                                 <td data-label="View">
                                     <button class="btn btn-primary" (click)="openDialog(item)">View</button>
                                 </td>
                             </tr>
                             <tr *ngIf="this.orders?.length">
                                 <th colspan="4"><span class="bold">Total Amount</span></th>
-                                <td data-label="Total Amount"><span class="bold">{{this.totalamount | currency : 'INR'}}</span></td>
+                                <td data-label="Total Amount"><span class="bold">{{this.totalamount | currency :
+                                        'INR'}}</span></td>
                                 <td colspan="3"></td>
                             </tr>
                         </tbody>

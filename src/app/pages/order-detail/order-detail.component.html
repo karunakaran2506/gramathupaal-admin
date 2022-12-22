@@ -24,16 +24,16 @@
             <div class="col-lg-4">
                 <h4 class="mar-2"><b>Store Details</b></h4>
                 <ul class="list-group">
-                    <li class="list-group-item"><b>Store Name</b> : {{this.orderdetail.store.name}}</li>
-                    <li class="list-group-item"><b>Store Location</b> : {{this.orderdetail.store.location}}</li>
+                    <li class="list-group-item"><b>Store Name</b> : {{this.orderdetail?.store?.name}}</li>
+                    <li class="list-group-item"><b>Store Location</b> : {{this.orderdetail?.store?.location}}</li>
                 </ul>
             </div>
 
             <div class="col-lg-4">
                 <h4 class="mar-2"><b>Customer Details</b></h4>
                 <ul (click)="viewCustomer(this.orderdetail.customer)" class="list-group">
-                    <li class="list-group-item"><b>Name</b> : {{this.orderdetail.customer.name}}</li>
-                    <li class="list-group-item"><b>Phone</b> : {{this.orderdetail.customer.phone}}</li>
+                    <li class="list-group-item"><b>Name</b> : {{this.orderdetail?.customer?.name || '-'}}</li>
+                    <li class="list-group-item"><b>Phone</b> : {{this.orderdetail?.customer?.phone || '-'}}</li>
                 </ul>
             </div>
         </div>

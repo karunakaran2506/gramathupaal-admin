@@ -29,15 +29,27 @@
                                 <th style="vertical-align: inherit;" scope="col">
                                     Product
                                 </th>
+                                <th colspan="2" style="vertical-align: inherit;" scope="col">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="vertical" *ngFor="let i = index; let data of milkcard | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <tr class="vertical"
+                                *ngFor="let i = index; let data of milkcard | paginate: { itemsPerPage: 10, currentPage: p }">
                                 <td data-label="S.no">{{i+1}}</td>
                                 <td data-label="Name">{{data?.name}}</td>
                                 <td data-label="Price">{{data?.price | currency : 'INR'}}</td>
                                 <td data-label="Validity">{{data?.validity}}</td>
-                                <td data-label="Product">{{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}</td>
+                                <td data-label="Product">
+                                    {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
+                                </td>
+                                <td data-label="Edit">
+                                    <button (click)="editMilkcard(data)" class="btn btn-secondary">Edit</button>
+                                </td>
+                                <td data-label="Delete">
+                                    <button (click)="deleteMilkcard(data?._id)" class="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
