@@ -91,6 +91,10 @@ import { UpdateFeedledgerComponent } from './update-feedledger/update-feedledger
 import { ViewAllfeedstockComponent } from './view-allfeedstock/view-allfeedstock.component';
 import { ViewDeliveryhistoryComponent } from './view-deliveryhistory/view-deliveryhistory.component';
 import { ViewDeliveryEntriesComponent } from './view-delivery-entries/view-delivery-entries.component';
+import { AddCowtreatmentComponent } from './add-cowtreatment/add-cowtreatment.component';
+import { ViewCowtreatmentComponent } from './view-cowtreatment/view-cowtreatment.component';
+import { AddCalfdeliveryComponent } from './add-calfdelivery/add-calfdelivery.component';
+import { ViewCalfdeliveryComponent } from './view-calfdelivery/view-calfdelivery.component';
 
 const routes: Routes = [
   {
@@ -109,6 +113,10 @@ const routes: Routes = [
   { path: 'add-cow', component: AddCowComponent, canActivate: [AuthGuard] },
   { path: 'edit-cow', component: EditCowComponent, canActivate: [AuthGuard] },
   { path: 'view-cow', component: ViewCowComponent, canActivate: [AuthGuard] },
+  { path: 'add-cow-treatment', component: AddCowtreatmentComponent, canActivate: [AuthGuard] },
+  { path: 'view-cow-treatment', component: ViewCowtreatmentComponent, canActivate: [AuthGuard] },
+  { path: 'add-calf-delivery', component: AddCalfdeliveryComponent, canActivate: [AuthGuard] },
+  { path: 'view-calf-delivery', component: ViewCalfdeliveryComponent, canActivate: [AuthGuard] },
   // Category & Products
   { path: 'product', component: ProductsComponent, canActivate: [AuthGuard] },
   {
@@ -476,6 +484,10 @@ const routes: Routes = [
     ViewAllfeedstockComponent,
     ViewDeliveryhistoryComponent,
     ViewDeliveryEntriesComponent,
+    AddCowtreatmentComponent,
+    ViewCowtreatmentComponent,
+    AddCalfdeliveryComponent,
+    ViewCalfdeliveryComponent,
   ],
   providers: [AuthGuard],
 })

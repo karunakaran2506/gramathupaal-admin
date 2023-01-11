@@ -63,13 +63,29 @@
                     </mat-list-item>
                 </mat-panel-title>
             </mat-expansion-panel-header>
+            <mat-list-item [style.color]="this.activepage=='/add-cow' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-cow');makeactive('add-cow')" class="no-left-margin">
+                <mat-label>Add Cow</mat-label>
+            </mat-list-item>
             <mat-list-item [style.color]="this.activepage=='/view-cow' ? '#39813e' : 'inherit'"
                 (click)="openpage('/view-cow');makeactive('view-cow')" class="no-left-margin">
                 <mat-label>View Cow</mat-label>
             </mat-list-item>
-            <mat-list-item [style.color]="this.activepage=='/add-cow' ? '#39813e' : 'inherit'"
-                (click)="openpage('/add-cow');makeactive('add-cow')" class="no-left-margin">
-                <mat-label>Add Cow</mat-label>
+            <mat-list-item [style.color]="this.activepage=='/add-cow-treatment' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-cow-treatment');makeactive('add-cow-treatment')" class="no-left-margin">
+                <mat-label>Add Cow Treatment</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-cow-treatment' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-cow-treatment');makeactive('add-cow-treatment')" class="no-left-margin">
+                <mat-label>View Cow Treatment</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/add-calf-delivery' ? '#39813e' : 'inherit'"
+                (click)="openpage('/add-calf-delivery');makeactive('add-calf-delivery')" class="no-left-margin">
+                <mat-label>Add Calf Delivery</mat-label>
+            </mat-list-item>
+            <mat-list-item [style.color]="this.activepage=='/view-calf-delivery' ? '#39813e' : 'inherit'"
+                (click)="openpage('/view-calf-delivery');makeactive('add-calf-delivery')" class="no-left-margin">
+                <mat-label>View Calf Delivery</mat-label>
             </mat-list-item>
         </mat-expansion-panel>
 

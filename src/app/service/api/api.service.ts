@@ -656,6 +656,22 @@ export class ApiService {
     });
   }
 
+  addCowTreatment(data: any) {
+    return this.http.post(this.baseurl + 'addCowTreatment', data, {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    });
+  }
+
+  addCalfDelivery(data: any) {
+    return this.http.post(this.baseurl + 'addCalfDelivery', data, {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    });
+  }
+
   editMilkcard(data: any) {
     return this.http.post(this.baseurl + 'editMilkcard', data, {
       headers: {
@@ -708,6 +724,22 @@ export class ApiService {
 
   viewCowMilkEntrybyDate(data: any) {
     return this.http.post(this.baseurl + 'viewCowMilkEntrybyDate', data, {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    });
+  }
+
+  viewCowTreatment(data: any) {
+    return this.http.post(this.baseurl + 'viewCowTreatment', data, {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    });
+  }
+
+  viewCalfDelivery(data: any) {
+    return this.http.post(this.baseurl + 'viewCalfDelivery', data, {
       headers: {
         token: localStorage.getItem('token'),
       },
