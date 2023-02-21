@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthGuard } from '../service/auth-guard/auth.guard';
 import { MaterialModule } from '../shared/material/material.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
@@ -402,6 +403,7 @@ const routes: Routes = [
     IconsModule,
     MDBBootstrapModule.forRoot(),
     SharedModule,
+    QRCodeModule
   ],
   declarations: [
     ViewCustomerComponent,

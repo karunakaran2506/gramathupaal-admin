@@ -54,6 +54,9 @@
                                 <th style="vertical-align: inherit;" scope="col">
                                     No.of.days remaining
                                 </th>
+                                <th style="vertical-align: inherit;" scope="col">
+                                    QR Code
+                                </th>
                                 <th style="vertical-align: inherit;" colspan="2" scope="col">
                                     Action
                                 </th>
@@ -63,12 +66,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="vertical" *ngFor="let i = index; let data of order | paginate: { itemsPerPage: 10, currentPage: p } | filter:term">
+                            <tr class="vertical"
+                                *ngFor="let i = index; let data of order | paginate: { itemsPerPage: 10, currentPage: p } | filter:term">
                                 <td data-label="S.no">{{i+1}}</td>
                                 <td data-label="Subscription Pack">{{data?.subscriptionpack?.name}}</td>
                                 <td data-label="Customer">{{data?.customer?.name}}- {{data?.customer?.phone}}</td>
-                                <td data-label="Customer Address">{{data?.customeraddress?.addressline1}},{{data?.customeraddress?.addressline2}},{{data?.customeraddress?.area}}-{{data?.customeraddress?.pincode}}</td>
-                                <td data-label="Delivery Man">{{data?.deliveryman?.name}}-{{data?.deliveryman?.phone}}</td>
+                                <td data-label="Customer Address">
+                                    {{data?.customeraddress?.addressline1}},{{data?.customeraddress?.addressline2}},{{data?.customeraddress?.area}}-{{data?.customeraddress?.pincode}}
+                                </td>
+                                <td data-label="Delivery Man">{{data?.deliveryman?.name}}-{{data?.deliveryman?.phone}}
+                                </td>
                                 <td data-label="Subscription Pack">
                                     <span class="low-validity" *ngIf="data?.validity < 10; else lowValidity">
                                         <p>{{data?.validity}}</p>
@@ -78,11 +85,15 @@
                                         {{data?.validity}}
                                     </ng-template>
                                 </td>
+                                <td data-label="QR Code">
+                                    <qrcode [qrdata]="data?.subscriptionpack?._id" [width]="100"></qrcode>
+                                </td>
                                 <td data-label="Action">
                                     <button (click)="editOrder(data)" class="btn btn-secondary">Edit</button>
                                 </td>
                                 <td data-label="Action">
-                                    <button (click)="deactivateOrder(data._id)" class="btn btn-danger">Deactivate</button>
+                                    <button (click)="deactivateOrder(data._id)"
+                                        class="btn btn-danger">Deactivate</button>
                                 </td>
                                 <td data-label="View">
                                     <button (click)="viewHistory(data)" class="btn btn-primary">View</button>
