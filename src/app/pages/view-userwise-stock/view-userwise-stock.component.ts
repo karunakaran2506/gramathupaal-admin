@@ -32,7 +32,7 @@ export class ViewUserwiseStockComponent implements OnInit {
     private apiservice: ApiService,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.apiservice.listStores().subscribe((data: any) => {
@@ -97,14 +97,25 @@ export class ViewUserwiseStockComponent implements OnInit {
         let totala1milksoldout = 0;
         let totalbuffalomilksoldout = 0;
         let totala2milksoldout = 0;
-        data.entries?.map((item: any) => {
+        data.entries?.forEach((item: any) => {
           if (item?.product?.milktype === 'a1milk') {
-            totala1milksoldout = item?.userStockOut + totala1milksoldout;
+            if (item?.product?.unit === 'litre') {
+              totala1milksoldout = (item?.userStockOut * item?.product?.quantity) + totala1milksoldout;
+            } else {
+              totala1milksoldout = (item?.userStockOut * (item?.product?.quantity / 1000)) + totala1milksoldout;
+            }
           } else if (item?.product?.milktype === 'a2milk') {
-            totala2milksoldout = item?.userStockOut + totala2milksoldout;
+            if (item?.product?.unit === 'litre') {
+              totala2milksoldout = (item?.userStockOut * item?.product?.quantity) + totala2milksoldout;
+            } else {
+              totala2milksoldout = (item?.userStockOut * (item?.product?.quantity / 1000)) + totala2milksoldout;
+            }
           } else if (item?.product?.milktype === 'buffalomilk') {
-            totalbuffalomilksoldout =
-              item?.userStockOut + totalbuffalomilksoldout;
+            if (item?.product?.unit === 'litre') {
+              totalbuffalomilksoldout = (item?.userStockOut * item?.product?.quantity) + totalbuffalomilksoldout;
+            } else {
+              totalbuffalomilksoldout = (item?.userStockOut * (item?.product?.quantity / 1000)) + totalbuffalomilksoldout;
+            }
           }
         });
 
