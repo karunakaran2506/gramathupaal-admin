@@ -75,7 +75,7 @@
                                     <h3 class="bold">{{item?.name}}</h3>
                                 </td>
                             </tr>
-                            <tr class="vertical" *ngFor="let data of stockEntries | category : item._id | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
+                            <tr class="vertical" *ngFor="let data of stockEntries | category : item._id; let i = index;">
                                 <td data-label="S.no">{{i+1}}</td>
                                 <td data-label="Product">
                                     {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
@@ -154,7 +154,7 @@
                             </thead>
                             <tbody *ngFor="let item of milkCategory">
                                 <tr class="vertical"
-                                    *ngFor="let data of stockEntries | category : item._id | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
+                                    *ngFor="let data of stockEntries | category : item._id; let i = index;">
                                     <td data-label="S.no">{{i+1}}</td>
                                     <td data-label="Product">
                                         {{data?.product?.name}}&nbsp;{{data?.product?.quantity}}&nbsp;{{data?.product?.unit}}
