@@ -86,7 +86,7 @@
                                     </ng-template>
                                 </td>
                                 <td data-label="QR Code">
-                                    <qrcode [qrdata]="data?.subscriptionpack?._id" [width]="100"></qrcode>
+                                    <qrcode [qrdata]="createQRUrl(data?._id)" [width]="100"></qrcode>
                                 </td>
                                 <td data-label="Action">
                                     <button (click)="editOrder(data)" class="btn btn-secondary">Edit</button>

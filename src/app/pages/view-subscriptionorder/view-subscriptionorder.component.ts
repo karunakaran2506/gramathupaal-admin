@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api/api.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { environment } from 'src/environments/environment';
 import { ViewDeliveryhistoryComponent } from '../view-deliveryhistory/view-deliveryhistory.component';
 
 @Component({
@@ -105,5 +106,9 @@ export class ViewSubscriptionorderComponent implements OnInit {
           });
       }
     });
+  }
+
+  createQRUrl(id: string){
+    return `${environment.deliveryUrl}/milk-delivery/qrscan/${id}`
   }
 }

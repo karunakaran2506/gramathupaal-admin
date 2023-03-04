@@ -7,6 +7,7 @@ export const environment = {
   s3region: 'ap-south-1',
   production: false,
   url: 'http://localhost:3000/',
+  deliveryUrl: 'http://localhost:4200/'
 };
 
 /*
